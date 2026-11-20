@@ -34,7 +34,7 @@ Then open <http://localhost:8000>. Any static server works (e.g. `npx serve`, VS
 
 ## Install as a phone app
 
-Open the site in a supported mobile browser, use the **Install app** button when available, or choose **Add to Home Screen** from the browser menu. Once installed, the directory opens in a standalone app window and its previously loaded content is available offline. On phone screens, the fixed Home, Apps, and Channels navigation switches between three views on tap, so only one section loads at a time.
+Open the site in a supported mobile browser, use the **Install app** button when available, or choose **Add to Home Screen** from the browser menu. On iPhone and iPad the button opens step-by-step instructions (Share → Add to Home Screen), because iOS has no automatic install prompt. Once installed, the directory opens in a standalone app window and its previously loaded content is available offline. On phone screens, the fixed Home, Apps, and Channels navigation switches between three views on tap, so only one section loads at a time.
 
 Service workers require HTTPS or localhost. GitHub Pages provides HTTPS automatically.
 

@@ -916,7 +916,74 @@ main section {
 }
 
 /* ==========================================================================
-   9. FOOTER
+   9. IOS INSTALL INSTRUCTIONS
+   ========================================================================== */
+.ios-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.ios-sheet-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.ios-sheet-card {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 0.75rem calc(0.75rem + env(safe-area-inset-bottom));
+  padding: 1.5rem 1.25rem 1.25rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.ios-sheet-card h2 {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.ios-sheet-card ol {
+  margin: 1rem 0 0.75rem 1.25rem;
+  display: grid;
+  gap: 0.6rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.ios-sheet-card li svg {
+  width: 18px;
+  height: 18px;
+  vertical-align: -3px;
+  color: var(--primary);
+}
+
+.ios-sheet-note {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.ios-sheet-close {
+  width: 100%;
+  margin-top: 1rem;
+  min-height: 2.75rem;
+  color: #ffffff;
+  background: var(--primary);
+  border: 0;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   10. FOOTER
    ========================================================================== */
 footer {
   background: #0f172a;

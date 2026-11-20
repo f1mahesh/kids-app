@@ -204,6 +204,27 @@
     </div>
   </footer>
 
+  <div id="ios-install" class="ios-sheet hidden" role="dialog" aria-modal="true" aria-labelledby="ios-install-title">
+    <div class="ios-sheet-backdrop" data-close-ios></div>
+    <div class="ios-sheet-card">
+      <h2 id="ios-install-title">Install on iPhone / iPad</h2>
+      <ol>
+        <li>Tap the <strong>Share</strong> button
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path>
+            <polyline points="16 6 12 2 8 6"></polyline>
+            <line x1="12" y1="2" x2="12" y2="15"></line>
+          </svg>
+          in the browser toolbar.
+        </li>
+        <li>Scroll down and tap <strong>Add to Home Screen</strong>.</li>
+        <li>Tap <strong>Add</strong>.</li>
+      </ol>
+      <p class="ios-sheet-note">Don't see it? Open this page in Safari first.</p>
+      <button type="button" class="ios-sheet-close" data-close-ios>Got it</button>
+    </div>
+  </div>
+
   <nav class="mobile-nav" aria-label="Quick navigation">
     <button class="mobile-nav-button active" type="button" data-nav="home" aria-current="page">
       <span class="nav-icon" aria-hidden="true">🏠</span>
@@ -602,6 +623,19 @@
         showView(viewFromHash());
 
         const installButton = document.getElementById("install-app");
+        const iosSheet = document.getElementById("ios-install");
+        const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent) ||
+          (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+        const isStandalone = window.navigator.standalone === true ||
+          window.matchMedia("(display-mode: standalone)").matches;
+
+        // iOS never fires beforeinstallprompt, so show manual Add to Home Screen steps
+        if (isIos && !isStandalone) installButton.classList.remove("hidden");
+
+        iosSheet.querySelectorAll("[data-close-ios]").forEach(function (el) {
+          el.addEventListener("click", function () { iosSheet.classList.add("hidden"); });
+        });
+
         window.addEventListener("beforeinstallprompt", function (event) {
           event.preventDefault();
           deferredInstallPrompt = event;
@@ -609,7 +643,10 @@
         });
 
         installButton.addEventListener("click", async function () {
-          if (!deferredInstallPrompt) return;
+          if (!deferredInstallPrompt) {
+            if (isIos) iosSheet.classList.remove("hidden");
+            return;
+          }
           deferredInstallPrompt.prompt();
           await deferredInstallPrompt.userChoice;
           deferredInstallPrompt = null;
