@@ -11,6 +11,10 @@ All content lives in JSON files, so you can add or change entries without touchi
 ```
 kids-app/
 ├── index.html          # Page layout, styles and rendering logic
+├── manifest.webmanifest # PWA metadata and install configuration
+├── sw.js               # Offline app-shell caching
+├── icons/
+│   └── app-icon.svg    # Installable app icon
 └── data/
     ├── apps.json       # Educational apps (categories + items)
     └── youtube.json    # YouTube channels (categories + items)
@@ -26,6 +30,12 @@ python -m http.server 8000
 ```
 
 Then open <http://localhost:8000>. Any static server works (e.g. `npx serve`, VS Code Live Server).
+
+## Install as a phone app
+
+Open the site in a supported mobile browser, use the **Install app** button when available, or choose **Add to Home Screen** from the browser menu. Once installed, the directory opens in a standalone app window and its previously loaded content is available offline. On phone screens, the fixed Home, Apps, and Channels navigation keeps both directories one tap away.
+
+Service workers require HTTPS or localhost. GitHub Pages provides HTTPS automatically.
 
 ## Update content
 

@@ -2,7 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#312e81" />
+  <meta name="description" content="Discover parent-approved educational apps and YouTube channels for kids." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Kids Learning" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icons/app-icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
   <title>Best Educational Apps &amp; YouTube Channels for Kids</title>
   <style>
     /* ==========================================================================
@@ -54,6 +62,7 @@
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
+      padding-bottom: calc(5rem + env(safe-area-inset-bottom));
     }
 
     a {
@@ -63,6 +72,11 @@
 
     button, input, select {
       font-family: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button, a {
+      touch-action: manipulation;
     }
 
     /* ==========================================================================
@@ -90,6 +104,7 @@
       padding: 3rem 0 3.5rem;
       position: relative;
       overflow: hidden;
+      scroll-margin-top: 1rem;
     }
 
     .hero::after {
@@ -260,6 +275,10 @@
       margin-bottom: 1.5rem;
     }
 
+    main section {
+      scroll-margin-top: 1rem;
+    }
+
     .section-kicker {
       display: inline-flex;
       align-items: center;
@@ -295,6 +314,19 @@
       padding: 1.25rem;
       box-shadow: var(--shadow-sm);
       margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 767px) {
+      .filter-panel {
+        position: sticky;
+        top: env(safe-area-inset-top);
+        z-index: 20;
+        margin-left: -0.35rem;
+        margin-right: -0.35rem;
+        background: rgba(255, 255, 255, 0.97);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+        backdrop-filter: blur(14px);
+      }
     }
 
     .pill-row {
@@ -665,8 +697,164 @@
       display: none !important;
     }
 
+    /* ========================================================================
+       8. MOBILE APP NAVIGATION
+       ======================================================================== */
+    .mobile-nav {
+      position: fixed;
+      z-index: 100;
+      left: 0.75rem;
+      right: 0.75rem;
+      bottom: calc(0.75rem + env(safe-area-inset-bottom));
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.35rem;
+      padding: 0.45rem;
+      background: rgba(15, 23, 42, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 1.25rem;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.3);
+      backdrop-filter: blur(16px);
+    }
+
+    .mobile-nav-button {
+      min-height: 3.6rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.1rem;
+      color: #cbd5e1;
+      background: transparent;
+      border: 0;
+      border-radius: 0.9rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .mobile-nav-button .nav-icon {
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    .mobile-nav-button.active {
+      color: #ffffff;
+      background: var(--primary);
+    }
+
+    .mobile-nav-button[data-target="youtube-section"].active {
+      background: var(--yt-red);
+    }
+
+    .install-button {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      min-height: 2.75rem;
+      padding: 0.6rem 0.9rem;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .install-button:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    @media (min-width: 768px) {
+      body {
+        padding-bottom: 0;
+      }
+
+      .mobile-nav {
+        left: 50%;
+        right: auto;
+        width: 420px;
+        transform: translateX(-50%);
+        opacity: 0.97;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding-top: 4.5rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero-nav {
+        display: none;
+      }
+
+      .quick-grid {
+        gap: 0.75rem;
+      }
+
+      .quick-card {
+        padding: 1rem;
+      }
+
+      main {
+        padding-top: 2rem;
+      }
+
+      .filter-panel {
+        padding: 1rem;
+      }
+
+      .filter-panel .controls-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+      }
+
+      .filter-panel .controls-row > .input-wrap {
+        grid-column: 1 / -1;
+      }
+
+      .filter-panel .btn-reset {
+        width: 100%;
+      }
+
+      .filter-panel .yt-controls {
+        display: grid;
+      }
+
+      .filter-panel .yt-controls > .input-wrap {
+        max-width: none !important;
+      }
+
+      .pill-row {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        margin-right: -1rem;
+        padding-right: 1rem;
+        scrollbar-width: none;
+        scroll-snap-type: x proximity;
+      }
+
+      .pill-row::-webkit-scrollbar {
+        display: none;
+      }
+
+      .filter-pill {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+      }
+    }
+
     /* ==========================================================================
-       8. FOOTER
+       9. FOOTER
        ========================================================================== */
     footer {
       background: #0f172a;
@@ -687,6 +875,10 @@
        HERO SECTION
        ======================================================================== -->
   <header class="hero">
+    <button id="install-app" class="install-button hidden" type="button" aria-label="Install Kids Learning app">
+      <span aria-hidden="true">⬇️</span>
+      <span>Install app</span>
+    </button>
     <div class="container hero-inner">
       <div class="hero-badge">
         <span>✨ Parent &amp; Educator Curated Guide</span>
@@ -854,6 +1046,21 @@
     </div>
   </footer>
 
+  <nav class="mobile-nav" aria-label="Quick navigation">
+    <button class="mobile-nav-button active" type="button" data-target="page-top" aria-current="page">
+      <span class="nav-icon" aria-hidden="true">🏠</span>
+      <span>Home</span>
+    </button>
+    <button class="mobile-nav-button" type="button" data-target="apps-section">
+      <span class="nav-icon" aria-hidden="true">📱</span>
+      <span>Apps</span>
+    </button>
+    <button class="mobile-nav-button" type="button" data-target="youtube-section">
+      <span class="nav-icon" aria-hidden="true">▶️</span>
+      <span>Channels</span>
+    </button>
+  </nav>
+
   <!-- ========================================================================
        SELF-CONTAINED VANILLA JAVASCRIPT DATA & RENDERING ENGINE
        ======================================================================== -->
@@ -868,6 +1075,7 @@
       let YOUTUBE_DATA = [];
       let APP_CATS = {};
       let YT_CATS = {};
+      let deferredInstallPrompt = null;
 
       const PRICING_LABELS = { free: "Free", freemium: "Freemium", paid: "Paid" };
 
@@ -1165,6 +1373,72 @@
       }
 
       function start() {
+        const navButtons = Array.from(document.querySelectorAll(".mobile-nav-button"));
+        const hero = document.querySelector(".hero");
+        hero.id = "page-top";
+
+        function setActiveNavigation(target) {
+          navButtons.forEach(function (button) {
+            const active = button.getAttribute("data-target") === target;
+            button.classList.toggle("active", active);
+            if (active) {
+              button.setAttribute("aria-current", "page");
+            } else {
+              button.removeAttribute("aria-current");
+            }
+          });
+        }
+
+        navButtons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            const targetId = button.getAttribute("data-target");
+            const target = document.getElementById(targetId);
+            if (!target) return;
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+            history.replaceState(null, "", "#" + targetId);
+            setActiveNavigation(targetId);
+          });
+        });
+
+        if ("IntersectionObserver" in window) {
+          const observer = new IntersectionObserver(function (entries) {
+            const visible = entries
+              .filter(function (entry) { return entry.isIntersecting; })
+              .sort(function (a, b) { return b.intersectionRatio - a.intersectionRatio; });
+            if (visible.length) setActiveNavigation(visible[0].target.id);
+          }, { rootMargin: "-15% 0px -55% 0px", threshold: [0, 0.1, 0.35] });
+          [hero, document.getElementById("apps-section"), document.getElementById("youtube-section")]
+            .forEach(function (section) { observer.observe(section); });
+        }
+
+        const installButton = document.getElementById("install-app");
+        window.addEventListener("beforeinstallprompt", function (event) {
+          event.preventDefault();
+          deferredInstallPrompt = event;
+          installButton.classList.remove("hidden");
+        });
+
+        installButton.addEventListener("click", async function () {
+          if (!deferredInstallPrompt) return;
+          deferredInstallPrompt.prompt();
+          await deferredInstallPrompt.userChoice;
+          deferredInstallPrompt = null;
+          installButton.classList.add("hidden");
+        });
+
+        window.addEventListener("appinstalled", function () {
+          deferredInstallPrompt = null;
+          installButton.classList.add("hidden");
+        });
+
+        if ("serviceWorker" in navigator) {
+          window.addEventListener("load", function () {
+            navigator.serviceWorker.register("./sw.js").catch(function (err) {
+              console.error("Service worker registration failed:", err);
+            });
+          });
+        }
+
         Promise.all([loadJson("data/apps.json"), loadJson("data/youtube.json")])
           .then(function (res) { init(res[0], res[1]); })
           .catch(function (err) {
