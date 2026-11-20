@@ -813,27 +813,6 @@
         padding: 1rem;
       }
 
-      .filter-panel .controls-row {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.5rem;
-      }
-
-      .filter-panel .controls-row > .input-wrap {
-        grid-column: 1 / -1;
-      }
-
-      .filter-panel .btn-reset {
-        width: 100%;
-      }
-
-      .filter-panel .yt-controls {
-        display: grid;
-      }
-
-      .filter-panel .yt-controls > .input-wrap {
-        max-width: none !important;
-      }
-
       .pill-row {
         flex-wrap: nowrap;
         overflow-x: auto;
@@ -850,6 +829,104 @@
       .filter-pill {
         flex: 0 0 auto;
         scroll-snap-align: start;
+      }
+    }
+
+    /* Collapsible filters on phones: search + filter icon stay visible */
+    .filter-toggle {
+      display: none;
+    }
+
+    @media (max-width: 767px) {
+      .filter-panel {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+        gap: 0.5rem;
+        padding: 0.6rem;
+        max-height: calc(100vh - 7rem);
+        max-height: calc(100dvh - 7rem);
+        overflow-y: auto;
+      }
+
+      .filter-panel .controls-row,
+      .filter-panel .controls-row.yt-controls {
+        display: contents;
+      }
+
+      .filter-panel .input-wrap {
+        grid-column: 1 / 3;
+        order: 1;
+        max-width: none !important;
+      }
+
+      .filter-toggle {
+        order: 2;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.75rem;
+        color: var(--text-secondary);
+        background: var(--bg-subtle);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+      }
+
+      .filter-toggle svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .filter-toggle[aria-expanded="true"] {
+        color: #ffffff;
+        background: var(--primary);
+        border-color: var(--primary);
+      }
+
+      #yt-filter-panel .filter-toggle[aria-expanded="true"] {
+        background: var(--yt-red);
+        border-color: var(--yt-red);
+      }
+
+      .filter-badge {
+        position: absolute;
+        top: -0.35rem;
+        right: -0.35rem;
+        min-width: 1.15rem;
+        height: 1.15rem;
+        padding: 0 0.25rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        background: var(--yt-red);
+        border-radius: var(--radius-full);
+        font-size: 0.68rem;
+        font-weight: 800;
+      }
+
+      .filter-panel .pill-row {
+        order: 3;
+        grid-column: 1 / -1;
+        min-width: 0;
+        padding-bottom: 0.6rem;
+      }
+
+      .filter-panel .control-select {
+        order: 4;
+      }
+
+      .filter-panel .btn-reset {
+        order: 5;
+        grid-column: 1 / -1;
+        width: 100%;
+      }
+
+      .filter-panel.collapsed .pill-row,
+      .filter-panel.collapsed .control-select,
+      .filter-panel.collapsed .btn-reset {
+        display: none;
       }
     }
 
@@ -945,7 +1022,7 @@
       </div>
 
       <!-- Apps Filter Bar -->
-      <div class="filter-panel">
+      <div class="filter-panel collapsed" id="app-filter-panel">
         <div id="app-pills" class="pill-row" role="tablist" aria-label="Filter apps by category"></div>
 
         <div class="controls-row">
@@ -956,6 +1033,13 @@
             </svg>
             <input type="search" id="app-search" class="control-input" placeholder="Search apps by name, skill, or description..." aria-label="Search educational apps" />
           </div>
+
+          <button type="button" class="filter-toggle" aria-expanded="false" aria-label="Show filters">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+            </svg>
+            <span class="filter-badge hidden">0</span>
+          </button>
 
           <select id="app-age" class="control-select" aria-label="Filter by age group">
             <option value="all">All Ages (2–16)</option>
@@ -1006,7 +1090,7 @@
       </div>
 
       <!-- YouTube Filter Bar -->
-      <div class="filter-panel">
+      <div class="filter-panel collapsed" id="yt-filter-panel">
         <div id="yt-pills" class="pill-row" role="tablist" aria-label="Filter YouTube channels by subject"></div>
 
         <div class="controls-row yt-controls">
@@ -1017,6 +1101,12 @@
             </svg>
             <input type="search" id="yt-search" class="control-input" placeholder="Search channels or topics (e.g., worksheets, science, calm)..." aria-label="Search YouTube channels" />
           </div>
+          <button type="button" class="filter-toggle" aria-expanded="false" aria-label="Show filters">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+            </svg>
+            <span class="filter-badge hidden">0</span>
+          </button>
           <button type="button" id="yt-reset" class="btn-reset">Reset Channel Filters</button>
         </div>
       </div>
@@ -1131,10 +1221,32 @@
         </svg>
       `;
 
+      function updateFilterBadge(panelId, count) {
+        const panel = document.getElementById(panelId);
+        if (!panel) return;
+        const badge = panel.querySelector(".filter-badge");
+        badge.textContent = count;
+        badge.classList.toggle("hidden", count === 0);
+      }
+
+      function bindFilterToggle(panelId) {
+        const panel = document.getElementById(panelId);
+        const toggle = panel.querySelector(".filter-toggle");
+        toggle.addEventListener("click", function () {
+          const collapsed = panel.classList.toggle("collapsed");
+          toggle.setAttribute("aria-expanded", String(!collapsed));
+          toggle.setAttribute("aria-label", collapsed ? "Show filters" : "Hide filters");
+        });
+      }
+
       /* ----------------------------------------------------------------------
          4. RENDER FUNCTIONS
          ---------------------------------------------------------------------- */
       function renderApps() {
+        updateFilterBadge(
+          "app-filter-panel",
+          ["category", "age", "price"].filter(function (k) { return appState[k] !== "all"; }).length
+        );
         const grid = document.getElementById("apps-grid");
         const empty = document.getElementById("apps-empty");
         const countText = document.getElementById("app-count-text");
@@ -1198,6 +1310,7 @@
       }
 
       function renderYouTube() {
+        updateFilterBadge("yt-filter-panel", ytState.subject !== "all" ? 1 : 0);
         const grid = document.getElementById("yt-grid");
         const empty = document.getElementById("yt-empty");
         const countText = document.getElementById("yt-count-text");
@@ -1368,6 +1481,8 @@
         document.getElementById("yt-empty-reset").addEventListener("click", resetYouTube);
 
         // Initial render
+        bindFilterToggle("app-filter-panel");
+        bindFilterToggle("yt-filter-panel");
         renderApps();
         renderYouTube();
       }
