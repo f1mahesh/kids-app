@@ -3,698 +3,1479 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Best Educational Apps for Kids — Curated Parent & Educator Directory</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            display: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
-          },
-          boxShadow: {
-            soft: '0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04)',
-            hover: '0 14px 28px -6px rgba(15, 23, 42, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.06)',
-          }
-        }
+  <title>Best Educational Apps &amp; YouTube Channels for Kids</title>
+  <style>
+    /* ==========================================================================
+       1. DESIGN TOKENS & RESET (100% Self-Contained, Zero External Dependencies)
+       ========================================================================== */
+    :root {
+      --bg-page: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --text-main: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --border-light: #e2e8f0;
+      --border-focus: #6366f1;
+
+      --primary: #4f46e5;
+      --primary-dark: #3730a3;
+      --primary-light: #eef2ff;
+
+      --yt-red: #e11d48;
+      --yt-red-dark: #be123c;
+      --yt-red-light: #ffe4e6;
+
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-full: 9999px;
+      --transition: all 0.2s ease;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-main);
+      background-color: var(--bg-page);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button, input, select {
+      font-family: inherit;
+    }
+
+    /* ==========================================================================
+       2. LAYOUT UTILITIES
+       ========================================================================== */
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 0 2rem;
       }
-    };
-  </script>
+    }
+
+    /* ==========================================================================
+       3. HERO HEADER
+       ========================================================================== */
+    .hero {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 52%, #4338ca 100%);
+      color: #ffffff;
+      padding: 3rem 0 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: #e0e7ff;
+      padding: 0.4rem 0.9rem;
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin-top: 1rem;
+      font-size: clamp(1.85rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      max-width: 820px;
+    }
+
+    .hero p {
+      margin-top: 1rem;
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
+      color: #c7d2fe;
+      max-width: 720px;
+      line-height: 1.6;
+    }
+
+    .hero-nav {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #ffffff;
+      color: #1e1b4b;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.7rem 1.25rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .btn-hero-primary:hover {
+      background: #eef2ff;
+      transform: translateY(-1px);
+    }
+
+    .btn-hero-yt {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--yt-red);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.7rem 1.25rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .btn-hero-yt:hover {
+      background: var(--yt-red-dark);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       4. QUICK START GUIDE FOR PARENTS
+       ========================================================================== */
+    .quick-start {
+      margin-top: -1.75rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .quick-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .quick-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      gap: 0.9rem;
+      align-items: flex-start;
+    }
+
+    .quick-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      flex-shrink: 0;
+    }
+
+    .quick-card h2 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--primary);
+    }
+
+    .quick-card p {
+      margin-top: 0.25rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    .quick-card strong {
+      color: var(--text-main);
+    }
+
+    /* ==========================================================================
+       5. SECTION HEADINGS & FILTER CONTROLS
+       ========================================================================== */
+    main {
+      flex: 1;
+      padding: 2.75rem 0 4rem;
+    }
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary);
+    }
+
+    .section-kicker.yt {
+      color: var(--yt-red);
+    }
+
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+    }
+
+    .section-desc {
+      font-size: 0.98rem;
+      color: var(--text-secondary);
+      max-width: 760px;
+    }
+
+    .filter-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 1.5rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .pill-row.no-border {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .filter-pill {
+      border: 1px solid transparent;
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.5rem 0.9rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .filter-pill:hover {
+      background: #e0e7ff;
+      color: var(--primary-dark);
+    }
+
+    .filter-pill.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3);
+    }
+
+    .yt-pill:hover {
+      background: var(--yt-red-light);
+      color: var(--yt-red-dark);
+    }
+
+    .yt-pill.active {
+      background: var(--yt-red);
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(225, 29, 72, 0.3);
+    }
+
+    .controls-row {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 768px) {
+      .controls-row {
+        grid-template-columns: 2fr 1fr 1fr auto;
+        align-items: center;
+      }
+    }
+
+    .controls-row.yt-controls {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .input-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .input-wrap svg {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .control-input, .control-select {
+      width: 100%;
+      background: var(--bg-page);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 0.6rem 0.85rem;
+      font-size: 0.88rem;
+      color: var(--text-main);
+      transition: var(--transition);
+    }
+
+    .control-input {
+      padding-left: 2.35rem;
+    }
+
+    .control-input:focus, .control-select:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+
+    .btn-reset {
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 0.6rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-reset:hover {
+      background: #e2e8f0;
+      color: var(--text-main);
+    }
+
+    .results-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       6. CARDS GRID (APPS & YOUTUBE CHANNELS)
+       ========================================================================== */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.35rem;
+    }
+
+    @media (min-width: 680px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-top: 4px solid var(--primary);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card.yt-card {
+      border-top-color: var(--yt-red);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.55rem;
+      flex-shrink: 0;
+    }
+
+    .yt-card .card-icon {
+      background: var(--yt-red-light);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.65rem;
+      border-radius: var(--radius-full);
+      line-height: 1.2;
+    }
+
+    .badge-cat-early { background: #ecfdf5; color: #047857; }
+    .badge-cat-reading { background: #eff6ff; color: #1d4ed8; }
+    .badge-cat-math { background: #fffbeb; color: #b45309; }
+    .badge-cat-coding { background: #f5f3ff; color: #6d28d9; }
+    .badge-cat-lang { background: #fdf2f8; color: #be185d; }
+
+    .badge-yt-sci { background: #ecfdf5; color: #047857; }
+    .badge-yt-math { background: #fffbeb; color: #b45309; }
+    .badge-yt-art { background: #fdf4ff; color: #a21caf; }
+    .badge-yt-early { background: #eff6ff; color: #1d4ed8; }
+    .badge-yt-gen { background: #eef2ff; color: #4338ca; }
+
+    .card-title {
+      margin-top: 1rem;
+      font-size: 1.18rem;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+
+    .meta-tags {
+      margin-top: 0.55rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .meta-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 8px;
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+    }
+
+    .meta-tag.free {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .meta-tag.freemium {
+      background: #e0e7ff;
+      color: #3730a3;
+    }
+
+    .meta-tag.paid {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
+    .card-desc {
+      margin-top: 0.85rem;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.58;
+    }
+
+    .card-footer {
+      margin-top: 1.25rem;
+      padding-top: 0.95rem;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .btn-visit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      width: 100%;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.68rem 1rem;
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+
+    .btn-visit:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-visit.yt {
+      background: var(--yt-red);
+    }
+
+    .btn-visit.yt:hover {
+      background: var(--yt-red-dark);
+    }
+
+    .btn-visit svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       7. EMPTY STATE & SECTION DIVIDER
+       ========================================================================== */
+    .empty-state {
+      background: var(--bg-card);
+      border: 1px dashed #cbd5e1;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+
+    .empty-state h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .empty-state p {
+      margin-top: 0.35rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .empty-state button {
+      margin-top: 1rem;
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 0.6rem 1.2rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .section-divider {
+      margin: 4rem 0 3.25rem;
+      border: 0;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .parent-tip {
+      margin-top: 1rem;
+      display: inline-block;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      color: #92400e;
+      font-size: 0.84rem;
+      padding: 0.65rem 0.95rem;
+      border-radius: var(--radius-md);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ==========================================================================
+       8. FOOTER
+       ========================================================================== */
+    footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 2rem 0;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    footer strong {
+      color: #f8fafc;
+    }
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-indigo-100 selection:text-indigo-900">
+<body>
 
-  <header class="relative overflow-hidden bg-gradient-to-br from-indigo-900 via-indigo-800 to-sky-900 text-white">
-    <div class="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-sky-400/10 blur-3xl"></div>
-    <div class="pointer-events-none absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-amber-400/10 blur-3xl"></div>
-
-    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-      <div class="max-w-3xl">
-        <div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-sky-200 backdrop-blur-sm">
-          <span>🎓</span>
-          <span>CURATED PARENT &amp; EDUCATOR GUIDE</span>
-        </div>
-        <h1 class="mt-4 font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
-          Best Educational Apps for Kids
-        </h1>
-        <p class="mt-4 text-base leading-relaxed text-indigo-100 sm:text-lg">
-          Explore 15 top-rated, educator-vetted learning apps across early childhood, reading, math, coding, and languages. Filter by age, pricing, or subject and jump straight to each official site.
-        </p>
+  <!-- ========================================================================
+       HERO SECTION
+       ======================================================================== -->
+  <header class="hero">
+    <div class="container hero-inner">
+      <div class="hero-badge">
+        <span>✨ Parent &amp; Educator Curated Guide</span>
       </div>
-
-      <div class="mt-10 rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-md sm:p-6">
-        <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <h2 class="flex items-center gap-2 font-display text-base font-bold text-amber-300 sm:text-lg">
-            <span>⭐</span>
-            <span>Quick Start Guide for Parents — Where to Begin</span>
-          </h2>
-          <span class="text-xs font-medium text-indigo-200">Click any quick-pick to filter or visit</span>
-        </div>
-
-        <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
-          <div class="flex flex-col justify-between rounded-xl bg-slate-900/40 p-4 ring-1 ring-white/10">
-            <div>
-              <span class="inline-block rounded-md bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-300">Best Free Starting Point</span>
-              <h3 class="mt-2 font-bold text-white">Khan Academy Kids</h3>
-              <p class="mt-1 text-xs leading-relaxed text-indigo-100">
-                100% free with zero ads. Covers early literacy, math, logic, and social-emotional learning for ages 2–8.
-              </p>
-            </div>
-            <div class="mt-3 pt-2 border-t border-white/10">
-              <a href="https://learn.khanacademy.org/khan-academy-kids/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-semibold text-sky-300 hover:text-sky-200 transition">
-                <span>Visit Khan Academy Kids</span>
-                <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="flex flex-col justify-between rounded-xl bg-slate-900/40 p-4 ring-1 ring-white/10">
-            <div>
-              <span class="inline-block rounded-md bg-rose-500/20 px-2 py-0.5 text-xs font-semibold text-rose-300">Best for Building Reading Habits</span>
-              <h3 class="mt-2 font-bold text-white">Duolingo ABC &amp; Epic!</h3>
-              <p class="mt-1 text-xs leading-relaxed text-indigo-100">
-                Start beginners on phonics with <strong>Duolingo ABC</strong> (free), then graduate independent readers to <strong>Epic!</strong>’s 40,000+ books.
-              </p>
-            </div>
-            <div class="mt-3 pt-2 border-t border-white/10 flex flex-wrap gap-3">
-              <a href="https://abc.duolingo.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-semibold text-sky-300 hover:text-sky-200 transition">
-                <span>Duolingo ABC</span>
-                <span aria-hidden="true">↗</span>
-              </a>
-              <a href="https://www.getepic.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-semibold text-sky-300 hover:text-sky-200 transition">
-                <span>Epic! Library</span>
-                <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="flex flex-col justify-between rounded-xl bg-slate-900/40 p-4 ring-1 ring-white/10">
-            <div>
-              <span class="inline-block rounded-md bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">Best Elementary Combo</span>
-              <h3 class="mt-2 font-bold text-white">Prodigy Math + Scratch</h3>
-              <p class="mt-1 text-xs leading-relaxed text-indigo-100">
-                Combine curriculum-aligned RPG math quests in <strong>Prodigy</strong> with creative block coding in MIT’s <strong>Scratch</strong>.
-              </p>
-            </div>
-            <div class="mt-3 pt-2 border-t border-white/10 flex flex-wrap gap-3">
-              <a href="https://www.prodigygame.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-semibold text-sky-300 hover:text-sky-200 transition">
-                <span>Prodigy Math</span>
-                <span aria-hidden="true">↗</span>
-              </a>
-              <a href="https://scratch.mit.edu/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-semibold text-sky-300 hover:text-sky-200 transition">
-                <span>Scratch Coding</span>
-                <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </div>
-        </div>
+      <h1>Best Educational Apps &amp; YouTube Channels for Kids</h1>
+      <p>
+        Explore 16 parent-approved educational apps across 5 core subjects plus 12 high-signal YouTube channels. Filter by age group, subject, or pricing and visit each official website directly.
+      </p>
+      <div class="hero-nav">
+        <a href="#apps-section" class="btn-hero-primary">
+          <span>📱 Explore 16 Learning Apps</span>
+        </a>
+        <a href="#youtube-section" class="btn-hero-yt">
+          <span>▶️ Explore 12 YouTube Channels</span>
+        </a>
       </div>
     </div>
   </header>
 
-  <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
-
-    <section aria-label="Filter educational apps" class="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-soft sm:p-6">
-      <div class="grid grid-cols-1 gap-4 lg:grid-cols-12">
-        <div class="lg:col-span-5">
-          <label for="search-input" class="block text-xs font-semibold uppercase tracking-wider text-slate-500">
-            Search Apps, Skills, or Topics
-          </label>
-          <div class="relative mt-1.5">
-            <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
-              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
-              </svg>
-            </span>
-            <input
-              id="search-input"
-              type="search"
-              placeholder="e.g. phonics, coding, offline, Montessori, math..."
-              class="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-sm text-slate-800 placeholder-slate-400 transition focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
-            />
+  <!-- ========================================================================
+       QUICK START GUIDE FOR PARENTS
+       ======================================================================== -->
+  <section class="quick-start" aria-label="Quick Start Guide for Parents">
+    <div class="container">
+      <div class="quick-grid">
+        <div class="quick-card">
+          <div class="quick-icon" style="background:#dcfce7;">🌟</div>
+          <div>
+            <h2>Best All-Around Free Start (Ages 2–8)</h2>
+            <p>Start with <strong>Khan Academy Kids</strong> &amp; <strong>PBS Kids Games</strong>—100% free, zero ads, and packed with reading, math, and logic games.</p>
           </div>
         </div>
+        <div class="quick-card">
+          <div class="quick-icon" style="background:#dbeafe;">📚</div>
+          <div>
+            <h2>Best for Building Reading Habits</h2>
+            <p>Use <strong>Duolingo ABC</strong> for early phonics and <strong>Epic!</strong> or free <strong>Libby</strong> for thousands of digital books.</p>
+          </div>
+        </div>
+        <div class="quick-card">
+          <div class="quick-icon" style="background:#ede9fe;">🚀</div>
+          <div>
+            <h2>Best for School-Age Math &amp; Coding</h2>
+            <p>Combine <strong>Prodigy Math</strong> for curriculum-aligned math quests with <strong>Scratch</strong> to learn real visual coding.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="sm:col-span-6 lg:col-span-3">
-          <label for="age-filter" class="block text-xs font-semibold uppercase tracking-wider text-slate-500">
-            Age Group
-          </label>
-          <select
-            id="age-filter"
-            class="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm font-medium text-slate-700 transition focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
-          >
-            <option value="all">All Ages (2–14+)</option>
-            <option value="toddlers">Toddlers &amp; Preschool (Ages 2–4)</option>
-            <option value="early-elem">Early Elementary (Ages 5–8)</option>
-            <option value="older">Older Kids &amp; Tweens (Ages 9+)</option>
-          </select>
+  <!-- ========================================================================
+       MAIN CONTENT: APPS DIRECTORY + YOUTUBE CHANNELS DIRECTORY
+       ======================================================================== -->
+  <main class="container">
+
+    <!-- SECTION 1: EDUCATIONAL APPS -->
+    <section id="apps-section" aria-labelledby="apps-heading">
+      <div class="section-header">
+        <span class="section-kicker">📱 Interactive App Directory</span>
+        <h2 id="apps-heading" class="section-title">Top 16 Educational Apps for Kids</h2>
+        <p class="section-desc">
+          Filter by category, target age range, or pricing model—or search by skill (e.g., "phonics", "coding", "Singapore Math", "Montessori").
+        </p>
+      </div>
+
+      <!-- Apps Filter Bar -->
+      <div class="filter-panel">
+        <div class="pill-row" role="tablist" aria-label="Filter apps by category">
+          <button type="button" class="filter-pill app-cat-pill active" data-cat="all">All Categories (16)</button>
+          <button type="button" class="filter-pill app-cat-pill" data-cat="early">🧸 Early Learning</button>
+          <button type="button" class="filter-pill app-cat-pill" data-cat="reading">📖 Reading &amp; Literacy</button>
+          <button type="button" class="filter-pill app-cat-pill" data-cat="math">🔢 Math</button>
+          <button type="button" class="filter-pill app-cat-pill" data-cat="coding">💻 Coding &amp; STEM</button>
+          <button type="button" class="filter-pill app-cat-pill" data-cat="languages">🌍 Languages &amp; Knowledge</button>
         </div>
 
-        <div class="sm:col-span-6 lg:col-span-4">
-          <label for="pricing-filter" class="block text-xs font-semibold uppercase tracking-wider text-slate-500">
-            Pricing Model
-          </label>
-          <select
-            id="pricing-filter"
-            class="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm font-medium text-slate-700 transition focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
-          >
-            <option value="all">All Pricing Models</option>
-            <option value="free">100% Free</option>
-            <option value="freemium">Freemium / Subscription</option>
-            <option value="one-time">One-Time Purchase</option>
+        <div class="controls-row">
+          <div class="input-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="search" id="app-search" class="control-input" placeholder="Search apps by name, skill, or description..." aria-label="Search educational apps" />
+          </div>
+
+          <select id="app-age" class="control-select" aria-label="Filter by age group">
+            <option value="all">All Ages (2–16)</option>
+            <option value="2-5">Ages 2–5 (Toddlers &amp; Pre-K)</option>
+            <option value="6-9">Ages 6–9 (Early Elementary)</option>
+            <option value="10+">Ages 10+ (Tweens &amp; Teens)</option>
           </select>
+
+          <select id="app-price" class="control-select" aria-label="Filter by pricing">
+            <option value="all">All Pricing Options</option>
+            <option value="free">Free</option>
+            <option value="freemium">Freemium</option>
+            <option value="paid">Paid</option>
+          </select>
+
+          <button type="button" id="app-reset" class="btn-reset">Reset Filters</button>
         </div>
       </div>
 
-      <div class="mt-5 border-t border-slate-100 pt-4">
-        <div class="flex flex-wrap items-center gap-2" role="tablist" aria-label="Filter by category">
-          <button type="button" data-category="all" class="category-pill active-pill rounded-xl px-3.5 py-2 text-xs font-semibold transition sm:text-sm">
-            All Categories (15)
-          </button>
-          <button type="button" data-category="early-learning" class="category-pill rounded-xl px-3.5 py-2 text-xs font-semibold transition sm:text-sm">
-            🧸 Early Learning
-          </button>
-          <button type="button" data-category="reading" class="category-pill rounded-xl px-3.5 py-2 text-xs font-semibold transition sm:text-sm">
-            📚 Reading &amp; Literacy
-          </button>
-          <button type="button" data-category="math" class="category-pill rounded-xl px-3.5 py-2 text-xs font-semibold transition sm:text-sm">
-            ➗ Math
-          </button>
-          <button type="button" data-category="stem" class="category-pill rounded-xl px-3.5 py-2 text-xs font-semibold transition sm:text-sm">
-            🤖 Coding &amp; STEM
-          </button>
-          <button type="button" data-category="languages" class="category-pill rounded-xl px-3.5 py-2 text-xs font-semibold transition sm:text-sm">
-            🌍 Languages &amp; Knowledge
-          </button>
-        </div>
+      <div class="results-bar">
+        <span id="app-count-text">Showing 16 of 16 apps</span>
+      </div>
+
+      <div id="apps-grid" class="cards-grid"></div>
+
+      <div id="apps-empty" class="empty-state hidden">
+        <h3>No educational apps match your current filters</h3>
+        <p>Try clearing your search query or choosing a broader age or pricing filter.</p>
+        <button type="button" id="apps-empty-reset">Show All 16 Apps</button>
       </div>
     </section>
 
-    <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
-      <p id="results-count" class="text-sm font-medium text-slate-600">
-        Showing <span class="font-bold text-slate-900">15</span> of 15 educational apps
-      </p>
-      <button
-        id="reset-filters-btn"
-        type="button"
-        class="hidden items-center gap-1.5 rounded-xl bg-slate-200/80 px-3.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-300/80 transition"
-      >
-        <span>↺</span>
-        <span>Reset All Filters</span>
-      </button>
-    </div>
+    <hr class="section-divider" />
 
-    <section id="apps-grid" aria-label="Educational Apps List" class="mt-5 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"></section>
-
-    <div id="empty-state" class="hidden mt-8 rounded-2xl border border-dashed border-slate-300 bg-white p-12 text-center">
-      <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-50 text-2xl">
-        🔍
+    <!-- SECTION 2: EDUCATIONAL YOUTUBE CHANNELS -->
+    <section id="youtube-section" aria-labelledby="yt-heading">
+      <div class="section-header">
+        <span class="section-kicker yt">▶️ Curated Video Learning</span>
+        <h2 id="yt-heading" class="section-title">Best Educational YouTube Channels for Kids</h2>
+        <p class="section-desc">
+          Genuinely helpful, educator-trusted channels that turn screen time into active curiosity—covering science experiments, visual math, phonics, printable lessons, and calm storytelling.
+        </p>
+        <div>
+          <span class="parent-tip">
+            💡 <strong>Parent Tip:</strong> Add these channels to an approved whitelist inside the free <strong>YouTube Kids</strong> app for a distraction-free experience.
+          </span>
+        </div>
       </div>
-      <h3 class="mt-4 font-display text-lg font-bold text-slate-900">No matching apps found</h3>
-      <p class="mt-1 text-sm text-slate-500">
-        Try clearing your search term or selecting a broader age range or category.
-      </p>
-      <button
-        id="empty-reset-btn"
-        type="button"
-        class="mt-5 inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition"
-      >
-        <span>Show All 15 Apps</span>
-      </button>
-    </div>
+
+      <!-- YouTube Filter Bar -->
+      <div class="filter-panel">
+        <div class="pill-row" role="tablist" aria-label="Filter YouTube channels by subject">
+          <button type="button" class="filter-pill yt-pill active" data-yt-sub="all">All Channels (12)</button>
+          <button type="button" class="filter-pill yt-pill" data-yt-sub="science">🔬 Science &amp; Nature</button>
+          <button type="button" class="filter-pill yt-pill" data-yt-sub="general">🌎 General Knowledge</button>
+          <button type="button" class="filter-pill yt-pill" data-yt-sub="curriculum">📝 Curriculum &amp; Printables</button>
+          <button type="button" class="filter-pill yt-pill" data-yt-sub="calm">🌿 Calm &amp; Low-Stimulation</button>
+          <button type="button" class="filter-pill yt-pill" data-yt-sub="math">🔢 Math &amp; Coding</button>
+        </div>
+
+        <div class="controls-row yt-controls">
+          <div class="input-wrap" style="max-width: 440px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="search" id="yt-search" class="control-input" placeholder="Search channels or topics (e.g., worksheets, science, calm)..." aria-label="Search YouTube channels" />
+          </div>
+          <button type="button" id="yt-reset" class="btn-reset">Reset Channel Filters</button>
+        </div>
+      </div>
+
+      <div class="results-bar">
+        <span id="yt-count-text">Showing 12 of 12 channels</span>
+      </div>
+
+      <div id="yt-grid" class="cards-grid"></div>
+
+      <div id="yt-empty" class="empty-state hidden">
+        <h3>No YouTube channels match your search</h3>
+        <p>Try resetting the subject filter or searching for another topic.</p>
+        <button type="button" id="yt-empty-reset" style="background: var(--yt-red);">Show All 12 Channels</button>
+      </div>
+    </section>
 
   </main>
 
-  <footer class="mt-12 border-t border-slate-200 bg-white">
-    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <div class="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
-        <div>
-          <p class="font-display text-sm font-bold text-slate-800">Kids Educational Apps Directory</p>
-          <p class="mt-0.5 text-xs text-slate-500">
-            All external links direct to the official websites of their respective creators and educational organizations.
-          </p>
-        </div>
-        <p class="text-xs text-slate-400">
-          Tip: Check your local public library for free access to apps like Libby.
-        </p>
-      </div>
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer>
+    <div class="container">
+      <p><strong>Kids Educational Apps &amp; YouTube Directory</strong> &bull; Curated for parents, teachers, and curious young learners.</p>
+      <p style="margin-top: 0.35rem; font-size: 0.8rem;">All links open the official publisher websites or YouTube channels in a new browser tab.</p>
     </div>
   </footer>
 
-  <style>
-    .category-pill {
-      background-color: #f1f5f9;
-      color: #475569;
-    }
-    .category-pill:hover {
-      background-color: #e2e8f0;
-      color: #1e293b;
-    }
-    .category-pill.active-pill {
-      background-color: #312e81;
-      color: #ffffff;
-      box-shadow: 0 2px 8px rgba(49, 46, 129, 0.25);
-    }
-  </style>
-
+  <!-- ========================================================================
+       SELF-CONTAINED VANILLA JAVASCRIPT DATA & RENDERING ENGINE
+       ======================================================================== -->
   <script>
-    const EDUCATIONAL_APPS = [
-      {
-        id: 'khan-academy-kids',
-        name: 'Khan Academy Kids',
-        icon: '🐻',
-        category: 'early-learning',
-        categoryLabel: 'Early Learning',
-        ageLabel: 'Ages 2–8',
-        ageGroups: ['toddlers', 'early-elem'],
-        pricingLabel: 'Free',
-        pricingType: 'free',
-        bestFor: 'Comprehensive early childhood curriculum',
-        description: 'Completely free with zero ads or in-app purchases. Developed with Stanford educators, it covers early literacy, reading, math, logic, and social-emotional learning. Adapts to your child’s level and includes an extensive library of digital books.',
-        url: 'https://learn.khanacademy.org/khan-academy-kids/'
-      },
-      {
-        id: 'pbs-kids-games',
-        name: 'PBS Kids Games',
-        icon: '📺',
-        category: 'early-learning',
-        categoryLabel: 'Early Learning',
-        ageLabel: 'Ages 2–8',
-        ageGroups: ['toddlers', 'early-elem'],
-        pricingLabel: 'Free',
-        pricingType: 'free',
-        bestFor: 'Playful learning for toddlers and preschoolers',
-        description: 'Features familiar characters (like Daniel Tiger, Curious George, and Wild Kratts) in mini-games focused on counting, rhyming, science, and problem-solving. Completely free, ad-free, and works offline once games are downloaded.',
-        url: 'https://pbskids.org/'
-      },
-      {
-        id: 'pok-pok',
-        name: 'Pok Pok',
-        icon: '🧩',
-        category: 'early-learning',
-        categoryLabel: 'Early Learning',
-        ageLabel: 'Ages 2–7',
-        ageGroups: ['toddlers', 'early-elem'],
-        pricingLabel: 'Subscription',
-        pricingType: 'freemium',
-        bestFor: 'Calm, Montessori-inspired creative play',
-        description: 'Designed to be low-stimulation—there are no timers, high scores, or loud flashing rewards. Kids explore handcrafted, open-ended digital toys (building, music, town life, puzzles) at their own peaceful pace.',
-        url: 'https://playpokpok.com/'
-      },
+    (function () {
+      "use strict";
 
-      {
-        id: 'duolingo-abc',
-        name: 'Duolingo ABC',
-        icon: '🦉',
-        category: 'reading',
-        categoryLabel: 'Reading & Literacy',
-        ageLabel: 'Ages 3–7',
-        ageGroups: ['toddlers', 'early-elem'],
-        pricingLabel: 'Free',
-        pricingType: 'free',
-        bestFor: 'Phonics and learning to read',
-        description: 'Uses bite-sized, gamified lessons created by literacy experts to teach letter sounds, phonics, handwriting, and sight words. Completely free and ad-free with offline lesson support.',
-        url: 'https://abc.duolingo.com/'
-      },
-      {
-        id: 'teach-your-monster',
-        name: 'Teach Your Monster to Read',
-        icon: '👾',
-        category: 'reading',
-        categoryLabel: 'Reading & Literacy',
-        ageLabel: 'Ages 4–8',
-        ageGroups: ['toddlers', 'early-elem'],
-        pricingLabel: 'Free on Web / Paid App',
-        pricingType: 'freemium',
-        bestFor: 'Structured phonics practice',
-        description: 'Kids design their own monster and take it on a magical journey where they must master letter sounds, blending, and reading full sentences to progress. Free to play on desktop web browsers.',
-        url: 'https://www.teachyourmonster.org/teachyourmonstertoread'
-      },
-      {
-        id: 'epic-books',
-        name: 'Epic!',
-        icon: '📖',
-        category: 'reading',
-        categoryLabel: 'Reading & Literacy',
-        ageLabel: 'Ages 4–12',
-        ageGroups: ['toddlers', 'early-elem', 'older'],
-        pricingLabel: 'Subscription / Limited Free Tier',
-        pricingType: 'freemium',
-        bestFor: 'Digital library & independent reading',
-        description: 'Gives access to over 40,000 popular children’s books, audiobooks, and "Read-to-Me" titles that highlight words as they are narrated—building reading confidence and stamina.',
-        url: 'https://www.getepic.com/'
-      },
-      {
-        id: 'libby',
-        name: 'Libby',
-        icon: '🏛️',
-        category: 'reading',
-        categoryLabel: 'Reading & Literacy',
-        ageLabel: 'All Ages',
-        ageGroups: ['toddlers', 'early-elem', 'older'],
-        pricingLabel: 'Free with Library Card',
-        pricingType: 'free',
-        bestFor: 'Free ebooks & audiobooks from your public library',
-        description: 'Connect your local public library card to borrow thousands of picture books, graphic novels, middle-grade chapter books, and read-along audiobooks completely free with zero late fees.',
-        url: 'https://libbyapp.com/'
-      },
+      /* ----------------------------------------------------------------------
+         1. DATASET: 16 EDUCATIONAL APPS ACROSS 5 CATEGORIES
+         ---------------------------------------------------------------------- */
+      const APPS_DATA = [
+        {
+          name: "Khan Academy Kids",
+          icon: "🐻",
+          category: "early",
+          categoryLabel: "Early Learning",
+          badgeClass: "badge-cat-early",
+          ageLabel: "Ages 2–8",
+          ageGroups: ["2-5", "6-9"],
+          pricingLabel: "Free",
+          pricingType: "free",
+          description: "A 100% free, ad-free early learning app created with Stanford educators. Kids build reading, math, logic, and social-emotional skills through adaptive games, digital storybooks, and creative drawing tools.",
+          url: "https://learn.khanacademy.org/khan-academy-kids/"
+        },
+        {
+          name: "PBS Kids Games",
+          icon: "📺",
+          category: "early",
+          categoryLabel: "Early Learning",
+          badgeClass: "badge-cat-early",
+          ageLabel: "Ages 2–8",
+          ageGroups: ["2-5", "6-9"],
+          pricingLabel: "Free",
+          pricingType: "free",
+          description: "Hundreds of ad-free mini-games featuring beloved characters like Daniel Tiger and Wild Kratts. Helps toddlers and preschoolers practice counting, rhyming, and problem-solving—even offline once downloaded.",
+          url: "https://pbskids.org/games/"
+        },
+        {
+          name: "Pok Pok",
+          icon: "🪵",
+          category: "early",
+          categoryLabel: "Early Learning",
+          badgeClass: "badge-cat-early",
+          ageLabel: "Ages 2–7",
+          ageGroups: ["2-5", "6-9"],
+          pricingLabel: "Paid",
+          pricingType: "paid",
+          description: "A calm, Montessori-inspired digital playroom with no timers, high scores, or loud flashing rewards. Encourages toddlers and young kids to explore open-ended toys, puzzles, music, and everyday life at their own pace.",
+          url: "https://playpokpok.com/"
+        },
+        {
+          name: "Kids Academy",
+          icon: "🎓",
+          category: "early",
+          categoryLabel: "Early Learning",
+          badgeClass: "badge-cat-early",
+          ageLabel: "Ages 2–10",
+          ageGroups: ["2-5", "6-9", "10+"],
+          pricingLabel: "Freemium",
+          pricingType: "freemium",
+          description: "A structured PreK–Grade 3 learning program combining interactive games, letter tracing, Singapore Math, phonics, and printable worksheets to guide kids step-by-step through core school subjects.",
+          url: "https://www.kidsacademy.mobi/"
+        },
+        {
+          name: "Duolingo ABC",
+          icon: "🦉",
+          category: "reading",
+          categoryLabel: "Reading & Literacy",
+          badgeClass: "badge-cat-reading",
+          ageLabel: "Ages 3–7",
+          ageGroups: ["2-5", "6-9"],
+          pricingLabel: "Free",
+          pricingType: "free",
+          description: "Short, playful, ad-free lessons that teach young children letter sounds, phonics, handwriting, and sight words. Builds early reading confidence in just a few minutes a day.",
+          url: "https://www.duolingo.com/abc"
+        },
+        {
+          name: "Teach Your Monster to Read",
+          icon: "👾",
+          category: "reading",
+          categoryLabel: "Reading & Literacy",
+          badgeClass: "badge-cat-reading",
+          ageLabel: "Ages 4–8",
+          ageGroups: ["2-5", "6-9"],
+          pricingLabel: "Freemium",
+          pricingType: "freemium",
+          description: "Kids design their own monster and go on a magical adventure where they master letter sounds, word blending, and reading full sentences. Free to play on desktop web browsers.",
+          url: "https://www.teachyourmonstertoread.com/"
+        },
+        {
+          name: "Epic!",
+          icon: "📚",
+          category: "reading",
+          categoryLabel: "Reading & Literacy",
+          badgeClass: "badge-cat-reading",
+          ageLabel: "Ages 4–12",
+          ageGroups: ["2-5", "6-9", "10+"],
+          pricingLabel: "Freemium",
+          pricingType: "freemium",
+          description: "An interactive digital library with over 40,000 popular kids' books, audiobooks, and \"Read-to-Me\" stories that highlight words aloud—making independent reading fun and accessible.",
+          url: "https://www.getepic.com/"
+        },
+        {
+          name: "Libby (by OverDrive)",
+          icon: "🏛️",
+          category: "reading",
+          categoryLabel: "Reading & Literacy",
+          badgeClass: "badge-cat-reading",
+          ageLabel: "Ages 4+",
+          ageGroups: ["2-5", "6-9", "10+"],
+          pricingLabel: "Free",
+          pricingType: "free",
+          description: "Connects directly to your local public library card so kids can borrow thousands of picture books, chapter books, and audiobooks for free on any tablet or phone.",
+          url: "https://libbyapp.com/"
+        },
+        {
+          name: "Prodigy Math",
+          icon: "🧙‍♂️",
+          category: "math",
+          categoryLabel: "Math",
+          badgeClass: "badge-cat-math",
+          ageLabel: "Ages 6–14",
+          ageGroups: ["6-9", "10+"],
+          pricingLabel: "Freemium",
+          pricingType: "freemium",
+          description: "Turns Grade 1–8 math practice into a fantasy adventure game where kids battle monsters and complete quests by solving curriculum-aligned math problems tailored to their skill level.",
+          url: "https://www.prodigygame.com/"
+        },
+        {
+          name: "Moose Math",
+          icon: "🫎",
+          category: "math",
+          categoryLabel: "Math",
+          badgeClass: "badge-cat-math",
+          ageLabel: "Ages 3–7",
+          ageGroups: ["2-5", "6-9"],
+          pricingLabel: "Free",
+          pricingType: "free",
+          description: "Created by Duck Duck Moose and Khan Academy, this free app teaches counting, addition, subtraction, shapes, and sorting through cheerful carnival and town-building mini-games.",
+          url: "https://www.duckduckmoose.com/educational-iphone-itouch-apps-for-kids/moose-math/"
+        },
+        {
+          name: "SplashLearn",
+          icon: "🐬",
+          category: "math",
+          categoryLabel: "Math",
+          badgeClass: "badge-cat-math",
+          ageLabel: "Ages 4–11",
+          ageGroups: ["2-5", "6-9", "10+"],
+          pricingLabel: "Freemium",
+          pricingType: "freemium",
+          description: "Personalized PreK–Grade 5 math and reading lessons that use visual models and interactive games to explain tricky topics like fractions, geometry, and multiplication.",
+          url: "https://www.splashlearn.com/"
+        },
+        {
+          name: "ScratchJr",
+          icon: "🐱",
+          category: "coding",
+          categoryLabel: "Coding & STEM",
+          badgeClass: "badge-cat-coding",
+          ageLabel: "Ages 5–7",
+          ageGroups: ["2-5", "6-9"],
+          pricingLabel: "Free",
+          pricingType: "free",
+          description: "Designed by MIT for young learners, kids snap together colorful visual blocks to make characters move, jump, dance, and tell stories—learning coding logic before they even need to read.",
+          url: "https://www.scratchjr.org/"
+        },
+        {
+          name: "Scratch",
+          icon: "🧩",
+          category: "coding",
+          categoryLabel: "Coding & STEM",
+          badgeClass: "badge-cat-coding",
+          ageLabel: "Ages 8–16",
+          ageGroups: ["6-9", "10+"],
+          pricingLabel: "Free",
+          pricingType: "free",
+          description: "The world's largest free coding community for kids. Young creators build their own playable games, animations, and interactive stories using visual block programming.",
+          url: "https://scratch.mit.edu/"
+        },
+        {
+          name: "Thinkrolls",
+          icon: "⚙️",
+          category: "coding",
+          categoryLabel: "Coding & STEM",
+          badgeClass: "badge-cat-coding",
+          ageLabel: "Ages 4–10",
+          ageGroups: ["2-5", "6-9", "10+"],
+          pricingLabel: "Paid",
+          pricingType: "paid",
+          description: "Clever physics-based maze puzzles where kids use gravity, heat, elasticity, and force to guide rolling characters to the finish line—sharpening logic and spatial reasoning.",
+          url: "https://avokiddo.com/thinkrolls/"
+        },
+        {
+          name: "Duolingo",
+          icon: "🌍",
+          category: "languages",
+          categoryLabel: "Languages & Knowledge",
+          badgeClass: "badge-cat-lang",
+          ageLabel: "Ages 7+",
+          ageGroups: ["6-9", "10+"],
+          pricingLabel: "Freemium",
+          pricingType: "freemium",
+          description: "Bite-sized daily lessons in 40+ languages with speaking, listening, and reading exercises. Great for older kids who can read comfortably and enjoy streak-based motivation.",
+          url: "https://www.duolingo.com/"
+        },
+        {
+          name: "BrainPOP / BrainPOP Jr.",
+          icon: "🤖",
+          category: "languages",
+          categoryLabel: "Languages & Knowledge",
+          badgeClass: "badge-cat-lang",
+          ageLabel: "Ages 5–14",
+          ageGroups: ["2-5", "6-9", "10+"],
+          pricingLabel: "Paid",
+          pricingType: "paid",
+          description: "Short, witty animated movies that break down complex science, history, social studies, and health topics into easy-to-understand stories, followed by interactive quizzes and activities.",
+          url: "https://www.brainpop.com/"
+        }
+      ];
 
-      {
-        id: 'prodigy-math',
-        name: 'Prodigy Math',
-        icon: '🧙‍♂️',
-        category: 'math',
-        categoryLabel: 'Math',
-        ageLabel: 'Ages 6–14',
-        ageGroups: ['early-elem', 'older'],
-        pricingLabel: 'Free Core / Paid Membership',
-        pricingType: 'freemium',
-        bestFor: 'Elementary & middle school math',
-        description: 'Wraps curriculum-aligned math problems inside an engaging fantasy role-playing game (RPG). Kids battle monsters and complete quests by solving math problems tailored to their exact grade level.',
-        url: 'https://www.prodigygame.com/'
-      },
-      {
-        id: 'moose-math',
-        name: 'Moose Math by Khan Academy',
-        icon: '🫎',
-        category: 'math',
-        categoryLabel: 'Math',
-        ageLabel: 'Ages 3–7',
-        ageGroups: ['toddlers', 'early-elem'],
-        pricingLabel: 'Free',
-        pricingType: 'free',
-        bestFor: 'Early math concepts & number sense',
-        description: 'Teaches counting, addition, subtraction, shapes, and sorting through playful, carnival- and town-themed mini-games guided by whimsical Moose characters. 100% free and ad-free.',
-        url: 'https://www.khanacademy.org/kids'
-      },
-      {
-        id: 'splashlearn',
-        name: 'SplashLearn',
-        icon: '💦',
-        category: 'math',
-        categoryLabel: 'Math',
-        ageLabel: 'Ages 4–11 (PreK–Gr 5)',
-        ageGroups: ['toddlers', 'early-elem', 'older'],
-        pricingLabel: 'Free Trial / Subscription',
-        pricingType: 'freemium',
-        bestFor: 'Structured PreK–Grade 5 math and reading practice',
-        description: 'Offers an adaptive learning path with clear visual explanations and interactive manipulatives for foundational concepts like fractions, geometry, place value, and multiplication.',
-        url: 'https://www.splashlearn.com/'
-      },
+      /* ----------------------------------------------------------------------
+         2. DATASET: 12 EDUCATIONAL YOUTUBE CHANNELS FOR KIDS
+         ---------------------------------------------------------------------- */
+      const YOUTUBE_DATA = [
+        {
+          name: "Learn Bright",
+          icon: "📝",
+          subject: "curriculum",
+          subjectLabel: "Curriculum & Printables",
+          badgeClass: "badge-yt-early",
+          ageLabel: "Ages 5–13",
+          handle: "@LearnBright",
+          description: "Teacher-created animated lessons covering science, history, math, and language arts. Almost every video pairs with free downloadable worksheets and lesson plans on learnbright.org.",
+          url: "https://www.youtube.com/c/LearnBright"
+        },
+        {
+          name: "Free School",
+          icon: "🌿",
+          subject: "calm",
+          subjectLabel: "Calm & Low-Stimulation",
+          badgeClass: "badge-yt-art",
+          ageLabel: "Ages 5–12",
+          handle: "@FreeSchool",
+          description: "Calm, gentle mini-documentaries exploring famous artists, classical music, world history, and nature. Uses soothing narration and real imagery instead of loud, fast-paced cartoons.",
+          url: "https://www.youtube.com/c/FreeSchool"
+        },
+        {
+          name: "SciShow Kids",
+          icon: "🔬",
+          subject: "science",
+          subjectLabel: "Science & Nature",
+          badgeClass: "badge-yt-sci",
+          ageLabel: "Ages 4–10",
+          handle: "@SciShowKids",
+          description: "Answers kids' everyday \"why\" and \"how\" questions—from how volcanoes erupt to why leaves change color—using fun host explanations and simple home science experiments.",
+          url: "https://www.youtube.com/@SciShowKids"
+        },
+        {
+          name: "Crash Course Kids",
+          icon: "🚀",
+          subject: "science",
+          subjectLabel: "Science & Nature",
+          badgeClass: "badge-yt-sci",
+          ageLabel: "Ages 8–13",
+          handle: "@crashcoursekids",
+          description: "Fast-paced, curriculum-aligned 5th-grade science series covering Earth science, space, engineering, and ecosystems in clear, energetic 4-minute episodes.",
+          url: "https://www.youtube.com/@crashcoursekids"
+        },
+        {
+          name: "National Geographic Kids",
+          icon: "🦁",
+          subject: "science",
+          subjectLabel: "Science & Nature",
+          badgeClass: "badge-yt-sci",
+          ageLabel: "Ages 5–13",
+          handle: "@natgeokids",
+          description: "Exciting wildlife footage, weird-but-true facts, and explorer adventures that introduce kids to animals, geography, and conservation around the globe.",
+          url: "https://www.youtube.com/@natgeokids"
+        },
+        {
+          name: "Peekaboo Kidz (Dr. Binocs Show)",
+          icon: "🔭",
+          subject: "general",
+          subjectLabel: "General Knowledge",
+          badgeClass: "badge-yt-gen",
+          ageLabel: "Ages 5–11",
+          handle: "@Peekaboo_Kidz",
+          description: "Friendly animated character Dr. Binocs explains how the human body, weather, inventions, and history work using colorful, easy-to-follow storytelling.",
+          url: "https://www.youtube.com/@Peekaboo_Kidz"
+        },
+        {
+          name: "TED-Ed",
+          icon: "💡",
+          subject: "general",
+          subjectLabel: "General Knowledge",
+          badgeClass: "badge-yt-gen",
+          ageLabel: "Ages 9+",
+          handle: "@TEDEd",
+          description: "Award-winning short animated lessons created by educators and animators that spark curiosity in science, history, literature, and brain-teasing logic riddles.",
+          url: "https://www.youtube.com/@TEDEd"
+        },
+        {
+          name: "Numberblocks",
+          icon: "🔢",
+          subject: "math",
+          subjectLabel: "Math & Coding",
+          badgeClass: "badge-yt-math",
+          ageLabel: "Ages 3–7",
+          handle: "@Numberblocks",
+          description: "BBC-produced musical animations where friendly block characters teach counting, addition, multiplication, and number sense visually so young kids truly understand how numbers work.",
+          url: "https://www.youtube.com/@Numberblocks"
+        },
+        {
+          name: "Alphablocks",
+          icon: "🔤",
+          subject: "curriculum",
+          subjectLabel: "Curriculum & Printables",
+          badgeClass: "badge-yt-early",
+          ageLabel: "Ages 3–7",
+          handle: "@alphablocks",
+          description: "Companion series to Numberblocks where animated letter characters join together to sound out words, making phonics and early reading intuitive and memorable.",
+          url: "https://www.youtube.com/@alphablocks"
+        },
+        {
+          name: "Art for Kids Hub",
+          icon: "🎨",
+          subject: "calm",
+          subjectLabel: "Calm & Low-Stimulation",
+          badgeClass: "badge-yt-art",
+          ageLabel: "Ages 4–14",
+          handle: "@artforkidshub",
+          description: "Real-time, step-by-step drawing tutorials led by a dad and his kids. Encourages screen-free creativity with paper and markers while building focus and confidence.",
+          url: "https://www.youtube.com/@artforkidshub"
+        },
+        {
+          name: "Smile and Learn",
+          icon: "😊",
+          subject: "curriculum",
+          subjectLabel: "Curriculum & Printables",
+          badgeClass: "badge-yt-early",
+          ageLabel: "Ages 3–10",
+          handle: "@SmileandLearnEnglish",
+          description: "Teacher-designed animated videos covering vocabulary, emotions, basic math, geography, and life skills in a warm, accessible style for preschoolers and early elementary kids.",
+          url: "https://www.youtube.com/@SmileandLearnEnglish"
+        },
+        {
+          name: "Storyline Online",
+          icon: "📖",
+          subject: "calm",
+          subjectLabel: "Calm & Low-Stimulation",
+          badgeClass: "badge-yt-art",
+          ageLabel: "Ages 4–10",
+          handle: "@StorylineOnline",
+          description: "Celebrated actors read beloved children's picture books aloud alongside gentle animations, helping kids fall in love with stories, vocabulary, and expressive reading.",
+          url: "https://www.youtube.com/@StorylineOnline"
+        }
+      ];
 
-      {
-        id: 'scratchjr',
-        name: 'ScratchJr',
-        icon: '🐱',
-        category: 'stem',
-        categoryLabel: 'Coding & STEM',
-        ageLabel: 'Ages 5–7',
-        ageGroups: ['early-elem'],
-        pricingLabel: 'Free',
-        pricingType: 'free',
-        bestFor: 'First introduction to coding for young learners',
-        description: 'Developed by MIT and Tufts, young kids snap together visual, icon-based "code blocks" to make characters move, jump, dance, and tell interactive stories—no reading required.',
-        url: 'https://www.scratchjr.org/'
-      },
-      {
-        id: 'scratch',
-        name: 'Scratch',
-        icon: '🚀',
-        category: 'stem',
-        categoryLabel: 'Coding & STEM',
-        ageLabel: 'Ages 8+',
-        ageGroups: ['early-elem', 'older'],
-        pricingLabel: 'Free',
-        pricingType: 'free',
-        bestFor: 'Creative programming & computational thinking',
-        description: 'The world’s largest free coding community for kids, developed by the MIT Media Lab. Children program their own interactive stories, games, and animations while learning loops, variables, and logic.',
-        url: 'https://scratch.mit.edu/'
-      },
-      {
-        id: 'thinkrolls',
-        name: 'Thinkrolls Series',
-        icon: '⚙️',
-        category: 'stem',
-        categoryLabel: 'Coding & STEM',
-        ageLabel: 'Ages 4–10',
-        ageGroups: ['toddlers', 'early-elem', 'older'],
-        pricingLabel: 'One-Time Purchase',
-        pricingType: 'one-time',
-        bestFor: 'Physics, logic, and spatial problem-solving',
-        description: 'Kids navigate clever maze-like puzzles using real physics principles (gravity, heat, buoyancy, elasticity, and force) to guide rolling characters to the finish line without ads or subscriptions.',
-        url: 'https://avokiddo.com/'
-      },
+      /* ----------------------------------------------------------------------
+         3. STATE & DOM REFERENCES
+         ---------------------------------------------------------------------- */
+      const appState = {
+        category: "all",
+        age: "all",
+        price: "all",
+        search: ""
+      };
 
-      {
-        id: 'duolingo',
-        name: 'Duolingo',
-        icon: '🌍',
-        category: 'languages',
-        categoryLabel: 'Languages & Knowledge',
-        ageLabel: 'Ages 7+',
-        ageGroups: ['early-elem', 'older'],
-        pricingLabel: 'Free with Ads / Subscription',
-        pricingType: 'freemium',
-        bestFor: 'Foreign languages for independent readers',
-        description: 'Ideal once a child can read comfortably. Offers 40+ world languages (including Spanish, French, Japanese, and German) with quick daily lessons, speaking exercises, and motivating streak rewards.',
-        url: 'https://www.duolingo.com/'
-      },
-      {
-        id: 'brainpop',
-        name: 'BrainPOP / BrainPOP Jr.',
-        icon: '🤖',
-        category: 'languages',
-        categoryLabel: 'Languages & Knowledge',
-        ageLabel: 'Ages 5–14',
-        ageGroups: ['early-elem', 'older'],
-        pricingLabel: 'Subscription',
-        pricingType: 'freemium',
-        bestFor: 'Science, history, social studies, and health',
-        description: 'Uses short, witty animated movies starring Tim, Annie, and Moby the Robot to explain complex topics—from how volcanoes work to financial literacy—followed by quizzes and creative coding activities.',
-        url: 'https://www.brainpop.com/'
+      const ytState = {
+        subject: "all",
+        search: ""
+      };
+
+      const externalIconSvg = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      `;
+
+      const ytPlayIconSvg = `
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+      `;
+
+      /* ----------------------------------------------------------------------
+         4. RENDER FUNCTIONS
+         ---------------------------------------------------------------------- */
+      function renderApps() {
+        const grid = document.getElementById("apps-grid");
+        const empty = document.getElementById("apps-empty");
+        const countText = document.getElementById("app-count-text");
+        if (!grid) return;
+
+        const query = appState.search.trim().toLowerCase();
+
+        const filtered = APPS_DATA.filter(function (app) {
+          const matchCat = appState.category === "all" || app.category === appState.category;
+          const matchAge = appState.age === "all" || app.ageGroups.indexOf(appState.age) !== -1;
+          const matchPrice = appState.price === "all" || app.pricingType === appState.price;
+          const matchQuery =
+            query === "" ||
+            app.name.toLowerCase().indexOf(query) !== -1 ||
+            app.categoryLabel.toLowerCase().indexOf(query) !== -1 ||
+            app.description.toLowerCase().indexOf(query) !== -1;
+
+          return matchCat && matchAge && matchPrice && matchQuery;
+        });
+
+        countText.textContent = "Showing " + filtered.length + " of " + APPS_DATA.length + " apps";
+
+        if (filtered.length === 0) {
+          grid.innerHTML = "";
+          grid.classList.add("hidden");
+          empty.classList.remove("hidden");
+          return;
+        }
+
+        grid.classList.remove("hidden");
+        empty.classList.add("hidden");
+
+        grid.innerHTML = filtered
+          .map(function (app) {
+            const priceBadgeClass = app.pricingType;
+            return (
+              '<article class="card">' +
+                '<div>' +
+                  '<div class="card-top">' +
+                    '<div class="card-icon" aria-hidden="true">' + app.icon + '</div>' +
+                    '<span class="badge ' + app.badgeClass + '">' + app.categoryLabel + '</span>' +
+                  '</div>' +
+                  '<h3 class="card-title">' + app.name + '</h3>' +
+                  '<div class="meta-tags">' +
+                    '<span class="meta-tag">👶 ' + app.ageLabel + '</span>' +
+                    '<span class="meta-tag ' + priceBadgeClass + '">🏷️ ' + app.pricingLabel + '</span>' +
+                  '</div>' +
+                  '<p class="card-desc">' + app.description + '</p>' +
+                '</div>' +
+                '<div class="card-footer">' +
+                  '<a href="' + app.url + '" target="_blank" rel="noopener noreferrer" class="btn-visit">' +
+                    '<span>Visit Website</span>' +
+                    externalIconSvg +
+                  '</a>' +
+                '</div>' +
+              '</article>'
+            );
+          })
+          .join("");
       }
-    ];
 
-    const CATEGORY_THEMES = {
-      'early-learning': {
-        borderTop: 'border-t-emerald-500',
-        badgeBg: 'bg-emerald-50 text-emerald-700 ring-emerald-600/20',
-        iconBg: 'bg-emerald-100/80',
-        bestForBg: 'bg-emerald-50/70 border-emerald-100 text-emerald-900',
-        btnClass: 'bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-500/30'
-      },
-      'reading': {
-        borderTop: 'border-t-rose-500',
-        badgeBg: 'bg-rose-50 text-rose-700 ring-rose-600/20',
-        iconBg: 'bg-rose-100/80',
-        bestForBg: 'bg-rose-50/70 border-rose-100 text-rose-900',
-        btnClass: 'bg-rose-600 hover:bg-rose-700 focus:ring-rose-500/30'
-      },
-      'math': {
-        borderTop: 'border-t-amber-500',
-        badgeBg: 'bg-amber-50 text-amber-800 ring-amber-600/20',
-        iconBg: 'bg-amber-100/80',
-        bestForBg: 'bg-amber-50/70 border-amber-100 text-amber-950',
-        btnClass: 'bg-amber-600 hover:bg-amber-700 focus:ring-amber-500/30'
-      },
-      'stem': {
-        borderTop: 'border-t-indigo-500',
-        badgeBg: 'bg-indigo-50 text-indigo-700 ring-indigo-600/20',
-        iconBg: 'bg-indigo-100/80',
-        bestForBg: 'bg-indigo-50/70 border-indigo-100 text-indigo-950',
-        btnClass: 'bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500/30'
-      },
-      'languages': {
-        borderTop: 'border-t-sky-500',
-        badgeBg: 'bg-sky-50 text-sky-700 ring-sky-600/20',
-        iconBg: 'bg-sky-100/80',
-        bestForBg: 'bg-sky-50/70 border-sky-100 text-sky-950',
-        btnClass: 'bg-sky-600 hover:bg-sky-700 focus:ring-sky-500/30'
-      }
-    };
+      function renderYouTube() {
+        const grid = document.getElementById("yt-grid");
+        const empty = document.getElementById("yt-empty");
+        const countText = document.getElementById("yt-count-text");
+        if (!grid) return;
 
-    function getPricingBadgeStyle(pricingType) {
-      if (pricingType === 'free') {
-        return 'bg-teal-50 text-teal-700 ring-1 ring-inset ring-teal-600/20';
-      }
-      if (pricingType === 'one-time') {
-        return 'bg-purple-50 text-purple-700 ring-1 ring-inset ring-purple-600/20';
-      }
-      return 'bg-slate-100 text-slate-700 ring-1 ring-inset ring-slate-500/20';
-    }
+        const query = ytState.search.trim().toLowerCase();
 
-    const filterState = {
-      category: 'all',
-      age: 'all',
-      pricing: 'all',
-      search: ''
-    };
+        const filtered = YOUTUBE_DATA.filter(function (ch) {
+          const matchSub = ytState.subject === "all" || ch.subject === ytState.subject;
+          const matchQuery =
+            query === "" ||
+            ch.name.toLowerCase().indexOf(query) !== -1 ||
+            ch.subjectLabel.toLowerCase().indexOf(query) !== -1 ||
+            ch.handle.toLowerCase().indexOf(query) !== -1 ||
+            ch.description.toLowerCase().indexOf(query) !== -1;
 
-    const appsGrid = document.getElementById('apps-grid');
-    const resultsCount = document.getElementById('results-count');
-    const emptyState = document.getElementById('empty-state');
-    const resetFiltersBtn = document.getElementById('reset-filters-btn');
-    const emptyResetBtn = document.getElementById('empty-reset-btn');
-    const searchInput = document.getElementById('search-input');
-    const ageFilter = document.getElementById('age-filter');
-    const pricingFilter = document.getElementById('pricing-filter');
-    const categoryPills = document.querySelectorAll('.category-pill');
+          return matchSub && matchQuery;
+        });
 
-    function renderApps() {
-      const query = filterState.search.trim().toLowerCase();
+        countText.textContent = "Showing " + filtered.length + " of " + YOUTUBE_DATA.length + " channels";
 
-      const filtered = EDUCATIONAL_APPS.filter((app) => {
-        const matchesCategory = filterState.category === 'all' || app.category === filterState.category;
-        const matchesAge = filterState.age === 'all' || app.ageGroups.includes(filterState.age);
-        const matchesPricing = filterState.pricing === 'all' || app.pricingType === filterState.pricing;
+        if (filtered.length === 0) {
+          grid.innerHTML = "";
+          grid.classList.add("hidden");
+          empty.classList.remove("hidden");
+          return;
+        }
 
-        const matchesSearch =
-          query === '' ||
-          app.name.toLowerCase().includes(query) ||
-          app.categoryLabel.toLowerCase().includes(query) ||
-          app.bestFor.toLowerCase().includes(query) ||
-          app.description.toLowerCase().includes(query) ||
-          app.ageLabel.toLowerCase().includes(query) ||
-          app.pricingLabel.toLowerCase().includes(query);
+        grid.classList.remove("hidden");
+        empty.classList.add("hidden");
 
-        return matchesCategory && matchesAge && matchesPricing && matchesSearch;
-      });
-
-      resultsCount.innerHTML = `Showing <span class="font-bold text-slate-900">${filtered.length}</span> of ${EDUCATIONAL_APPS.length} educational apps`;
-
-      const hasActiveFilters =
-        filterState.category !== 'all' ||
-        filterState.age !== 'all' ||
-        filterState.pricing !== 'all' ||
-        query !== '';
-
-      if (hasActiveFilters) {
-        resetFiltersBtn.classList.remove('hidden');
-        resetFiltersBtn.classList.add('inline-flex');
-      } else {
-        resetFiltersBtn.classList.add('hidden');
-        resetFiltersBtn.classList.remove('inline-flex');
+        grid.innerHTML = filtered
+          .map(function (ch) {
+            return (
+              '<article class="card yt-card">' +
+                '<div>' +
+                  '<div class="card-top">' +
+                    '<div class="card-icon" aria-hidden="true">' + ch.icon + '</div>' +
+                    '<span class="badge ' + ch.badgeClass + '">' + ch.subjectLabel + '</span>' +
+                  '</div>' +
+                  '<h3 class="card-title">' + ch.name + '</h3>' +
+                  '<div class="meta-tags">' +
+                    '<span class="meta-tag">👶 ' + ch.ageLabel + '</span>' +
+                    '<span class="meta-tag free">▶️ Free on YouTube</span>' +
+                  '</div>' +
+                  '<p class="card-desc">' + ch.description + '</p>' +
+                '</div>' +
+                '<div class="card-footer">' +
+                  '<a href="' + ch.url + '" target="_blank" rel="noopener noreferrer" class="btn-visit yt">' +
+                    ytPlayIconSvg +
+                    '<span>Watch on YouTube</span>' +
+                    externalIconSvg +
+                  '</a>' +
+                '</div>' +
+              '</article>'
+            );
+          })
+          .join("");
       }
 
-      if (filtered.length === 0) {
-        appsGrid.innerHTML = '';
-        appsGrid.classList.add('hidden');
-        emptyState.classList.remove('hidden');
-        return;
-      }
+      /* ----------------------------------------------------------------------
+         5. INITIALIZATION & EVENT BINDINGS
+         ---------------------------------------------------------------------- */
+      function init() {
+        // App category pills
+        const catPills = document.querySelectorAll(".app-cat-pill");
+        catPills.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            catPills.forEach(function (b) { b.classList.remove("active"); });
+            btn.classList.add("active");
+            appState.category = btn.getAttribute("data-cat");
+            renderApps();
+          });
+        });
 
-      appsGrid.classList.remove('hidden');
-      emptyState.classList.add('hidden');
+        // App search, age, pricing
+        const appSearchInput = document.getElementById("app-search");
+        const appAgeSelect = document.getElementById("app-age");
+        const appPriceSelect = document.getElementById("app-price");
 
-      appsGrid.innerHTML = filtered
-        .map((app) => {
-          const theme = CATEGORY_THEMES[app.category];
-          const pricingBadgeClass = getPricingBadgeStyle(app.pricingType);
+        appSearchInput.addEventListener("input", function (e) {
+          appState.search = e.target.value;
+          renderApps();
+        });
 
-          return `
-            <article class="flex flex-col justify-between rounded-2xl border border-slate-200/90 border-t-4 ${theme.borderTop} bg-white p-6 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-hover">
-              <div>
-                <div class="flex items-start justify-between gap-3">
-                  <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${theme.iconBg} text-2xl shadow-inner">
-                    ${app.icon}
-                  </div>
-                  <span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ring-inset ${theme.badgeBg}">
-                    ${app.categoryLabel}
-                  </span>
-                </div>
+        appAgeSelect.addEventListener("change", function (e) {
+          appState.age = e.target.value;
+          renderApps();
+        });
 
-                <h2 class="mt-4 font-display text-xl font-bold tracking-tight text-slate-900">
-                  ${app.name}
-                </h2>
+        appPriceSelect.addEventListener("change", function (e) {
+          appState.price = e.target.value;
+          renderApps();
+        });
 
-                <div class="mt-2.5 flex flex-wrap items-center gap-2">
-                  <span class="inline-flex items-center gap-1 rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700">
-                    <span>👶</span>
-                    <span>${app.ageLabel}</span>
-                  </span>
-                  <span class="inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-semibold ${pricingBadgeClass}">
-                    <span>🏷️</span>
-                    <span>${app.pricingLabel}</span>
-                  </span>
-                </div>
+        function resetApps() {
+          appState.category = "all";
+          appState.age = "all";
+          appState.price = "all";
+          appState.search = "";
+          appSearchInput.value = "";
+          appAgeSelect.value = "all";
+          appPriceSelect.value = "all";
+          catPills.forEach(function (b) {
+            b.classList.toggle("active", b.getAttribute("data-cat") === "all");
+          });
+          renderApps();
+        }
 
-                <div class="mt-4 rounded-xl border px-3.5 py-2.5 ${theme.bestForBg}">
-                  <p class="text-xs font-medium leading-snug">
-                    <span class="font-bold uppercase tracking-wide opacity-80">Best for:</span>
-                    <span class="font-semibold">${app.bestFor}</span>
-                  </p>
-                </div>
+        document.getElementById("app-reset").addEventListener("click", resetApps);
+        document.getElementById("apps-empty-reset").addEventListener("click", resetApps);
 
-                <p class="mt-3.5 text-sm leading-relaxed text-slate-600">
-                  ${app.description}
-                </p>
-              </div>
+        // YouTube subject pills
+        const ytPills = document.querySelectorAll(".yt-pill");
+        ytPills.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            ytPills.forEach(function (b) { b.classList.remove("active"); });
+            btn.classList.add("active");
+            ytState.subject = btn.getAttribute("data-yt-sub");
+            renderYouTube();
+          });
+        });
 
-              <div class="mt-6 pt-4 border-t border-slate-100">
-                <a
-                  href="${app.url}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-white shadow-sm transition focus:outline-none focus:ring-4 ${theme.btnClass}"
-                >
-                  <span>Visit Official Website</span>
-                  <span aria-hidden="true" class="text-base leading-none">↗</span>
-                </a>
-              </div>
-            </article>
-          `;
-        })
-        .join('');
-    }
+        // YouTube search
+        const ytSearchInput = document.getElementById("yt-search");
+        ytSearchInput.addEventListener("input", function (e) {
+          ytState.search = e.target.value;
+          renderYouTube();
+        });
 
-    function resetAllFilters() {
-      filterState.category = 'all';
-      filterState.age = 'all';
-      filterState.pricing = 'all';
-      filterState.search = '';
+        function resetYouTube() {
+          ytState.subject = "all";
+          ytState.search = "";
+          ytSearchInput.value = "";
+          ytPills.forEach(function (b) {
+            b.classList.toggle("active", b.getAttribute("data-yt-sub") === "all");
+          });
+          renderYouTube();
+        }
 
-      searchInput.value = '';
-      ageFilter.value = 'all';
-      pricingFilter.value = 'all';
+        document.getElementById("yt-reset").addEventListener("click", resetYouTube);
+        document.getElementById("yt-empty-reset").addEventListener("click", resetYouTube);
 
-      categoryPills.forEach((pill) => {
-        pill.classList.toggle('active-pill', pill.dataset.category === 'all');
-      });
-
-      renderApps();
-    }
-
-    categoryPills.forEach((pill) => {
-      pill.addEventListener('click', () => {
-        categoryPills.forEach((p) => p.classList.remove('active-pill'));
-        pill.classList.add('active-pill');
-        filterState.category = pill.dataset.category;
+        // Initial render
         renderApps();
-      });
-    });
+        renderYouTube();
+      }
 
-    searchInput.addEventListener('input', (e) => {
-      filterState.search = e.target.value;
-      renderApps();
-    });
-
-    ageFilter.addEventListener('change', (e) => {
-      filterState.age = e.target.value;
-      renderApps();
-    });
-
-    pricingFilter.addEventListener('change', (e) => {
-      filterState.pricing = e.target.value;
-      renderApps();
-    });
-
-    resetFiltersBtn.addEventListener('click', resetAllFilters);
-    emptyResetBtn.addEventListener('click', resetAllFilters);
-
-    document.addEventListener('DOMContentLoaded', renderApps);
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+    })();
   </script>
 </body>
 </html>
