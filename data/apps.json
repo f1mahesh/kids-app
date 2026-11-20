@@ -1,0 +1,250 @@
+{
+  "categories": [
+    {
+      "id": "early",
+      "pillLabel": "🧸 Early Learning",
+      "label": "Early Learning",
+      "badgeClass": "badge-cat-early"
+    },
+    {
+      "id": "reading",
+      "pillLabel": "📖 Reading & Literacy",
+      "label": "Reading & Literacy",
+      "badgeClass": "badge-cat-reading"
+    },
+    {
+      "id": "math",
+      "pillLabel": "🔢 Math",
+      "label": "Math",
+      "badgeClass": "badge-cat-math"
+    },
+    {
+      "id": "coding",
+      "pillLabel": "💻 Coding & STEM",
+      "label": "Coding & STEM",
+      "badgeClass": "badge-cat-coding"
+    },
+    {
+      "id": "languages",
+      "pillLabel": "🌍 Languages & Knowledge",
+      "label": "Languages & Knowledge",
+      "badgeClass": "badge-cat-lang"
+    }
+  ],
+  "items": [
+    {
+      "name": "Khan Academy Kids",
+      "icon": "🐻",
+      "category": "early",
+      "ageLabel": "Ages 2–8",
+      "ageGroups": [
+        "2-5",
+        "6-9"
+      ],
+      "pricing": "free",
+      "description": "A 100% free, ad-free early learning app created with Stanford educators. Kids build reading, math, logic, and social-emotional skills through adaptive games, digital storybooks, and creative drawing tools.",
+      "url": "https://learn.khanacademy.org/khan-academy-kids/"
+    },
+    {
+      "name": "PBS Kids Games",
+      "icon": "📺",
+      "category": "early",
+      "ageLabel": "Ages 2–8",
+      "ageGroups": [
+        "2-5",
+        "6-9"
+      ],
+      "pricing": "free",
+      "description": "Hundreds of ad-free mini-games featuring beloved characters like Daniel Tiger and Wild Kratts. Helps toddlers and preschoolers practice counting, rhyming, and problem-solving—even offline once downloaded.",
+      "url": "https://pbskids.org/games/"
+    },
+    {
+      "name": "Pok Pok",
+      "icon": "🪵",
+      "category": "early",
+      "ageLabel": "Ages 2–7",
+      "ageGroups": [
+        "2-5",
+        "6-9"
+      ],
+      "pricing": "paid",
+      "description": "A calm, Montessori-inspired digital playroom with no timers, high scores, or loud flashing rewards. Encourages toddlers and young kids to explore open-ended toys, puzzles, music, and everyday life at their own pace.",
+      "url": "https://playpokpok.com/"
+    },
+    {
+      "name": "Kids Academy",
+      "icon": "🎓",
+      "category": "early",
+      "ageLabel": "Ages 2–10",
+      "ageGroups": [
+        "2-5",
+        "6-9",
+        "10+"
+      ],
+      "pricing": "freemium",
+      "description": "A structured PreK–Grade 3 learning program combining interactive games, letter tracing, Singapore Math, phonics, and printable worksheets to guide kids step-by-step through core school subjects.",
+      "url": "https://www.kidsacademy.mobi/"
+    },
+    {
+      "name": "Duolingo ABC",
+      "icon": "🦉",
+      "category": "reading",
+      "ageLabel": "Ages 3–7",
+      "ageGroups": [
+        "2-5",
+        "6-9"
+      ],
+      "pricing": "free",
+      "description": "Short, playful, ad-free lessons that teach young children letter sounds, phonics, handwriting, and sight words. Builds early reading confidence in just a few minutes a day.",
+      "url": "https://www.duolingo.com/abc"
+    },
+    {
+      "name": "Teach Your Monster to Read",
+      "icon": "👾",
+      "category": "reading",
+      "ageLabel": "Ages 4–8",
+      "ageGroups": [
+        "2-5",
+        "6-9"
+      ],
+      "pricing": "freemium",
+      "description": "Kids design their own monster and go on a magical adventure where they master letter sounds, word blending, and reading full sentences. Free to play on desktop web browsers.",
+      "url": "https://www.teachyourmonstertoread.com/"
+    },
+    {
+      "name": "Epic!",
+      "icon": "📚",
+      "category": "reading",
+      "ageLabel": "Ages 4–12",
+      "ageGroups": [
+        "2-5",
+        "6-9",
+        "10+"
+      ],
+      "pricing": "freemium",
+      "description": "An interactive digital library with over 40,000 popular kids' books, audiobooks, and \"Read-to-Me\" stories that highlight words aloud—making independent reading fun and accessible.",
+      "url": "https://www.getepic.com/"
+    },
+    {
+      "name": "Libby (by OverDrive)",
+      "icon": "🏛️",
+      "category": "reading",
+      "ageLabel": "Ages 4+",
+      "ageGroups": [
+        "2-5",
+        "6-9",
+        "10+"
+      ],
+      "pricing": "free",
+      "description": "Connects directly to your local public library card so kids can borrow thousands of picture books, chapter books, and audiobooks for free on any tablet or phone.",
+      "url": "https://libbyapp.com/"
+    },
+    {
+      "name": "Prodigy Math",
+      "icon": "🧙‍♂️",
+      "category": "math",
+      "ageLabel": "Ages 6–14",
+      "ageGroups": [
+        "6-9",
+        "10+"
+      ],
+      "pricing": "freemium",
+      "description": "Turns Grade 1–8 math practice into a fantasy adventure game where kids battle monsters and complete quests by solving curriculum-aligned math problems tailored to their skill level.",
+      "url": "https://www.prodigygame.com/"
+    },
+    {
+      "name": "Moose Math",
+      "icon": "🫎",
+      "category": "math",
+      "ageLabel": "Ages 3–7",
+      "ageGroups": [
+        "2-5",
+        "6-9"
+      ],
+      "pricing": "free",
+      "description": "Created by Duck Duck Moose and Khan Academy, this free app teaches counting, addition, subtraction, shapes, and sorting through cheerful carnival and town-building mini-games.",
+      "url": "https://www.duckduckmoose.com/educational-iphone-itouch-apps-for-kids/moose-math/"
+    },
+    {
+      "name": "SplashLearn",
+      "icon": "🐬",
+      "category": "math",
+      "ageLabel": "Ages 4–11",
+      "ageGroups": [
+        "2-5",
+        "6-9",
+        "10+"
+      ],
+      "pricing": "freemium",
+      "description": "Personalized PreK–Grade 5 math and reading lessons that use visual models and interactive games to explain tricky topics like fractions, geometry, and multiplication.",
+      "url": "https://www.splashlearn.com/"
+    },
+    {
+      "name": "ScratchJr",
+      "icon": "🐱",
+      "category": "coding",
+      "ageLabel": "Ages 5–7",
+      "ageGroups": [
+        "2-5",
+        "6-9"
+      ],
+      "pricing": "free",
+      "description": "Designed by MIT for young learners, kids snap together colorful visual blocks to make characters move, jump, dance, and tell stories—learning coding logic before they even need to read.",
+      "url": "https://www.scratchjr.org/"
+    },
+    {
+      "name": "Scratch",
+      "icon": "🧩",
+      "category": "coding",
+      "ageLabel": "Ages 8–16",
+      "ageGroups": [
+        "6-9",
+        "10+"
+      ],
+      "pricing": "free",
+      "description": "The world's largest free coding community for kids. Young creators build their own playable games, animations, and interactive stories using visual block programming.",
+      "url": "https://scratch.mit.edu/"
+    },
+    {
+      "name": "Thinkrolls",
+      "icon": "⚙️",
+      "category": "coding",
+      "ageLabel": "Ages 4–10",
+      "ageGroups": [
+        "2-5",
+        "6-9",
+        "10+"
+      ],
+      "pricing": "paid",
+      "description": "Clever physics-based maze puzzles where kids use gravity, heat, elasticity, and force to guide rolling characters to the finish line—sharpening logic and spatial reasoning.",
+      "url": "https://avokiddo.com/thinkrolls/"
+    },
+    {
+      "name": "Duolingo",
+      "icon": "🌍",
+      "category": "languages",
+      "ageLabel": "Ages 7+",
+      "ageGroups": [
+        "6-9",
+        "10+"
+      ],
+      "pricing": "freemium",
+      "description": "Bite-sized daily lessons in 40+ languages with speaking, listening, and reading exercises. Great for older kids who can read comfortably and enjoy streak-based motivation.",
+      "url": "https://www.duolingo.com/"
+    },
+    {
+      "name": "BrainPOP / BrainPOP Jr.",
+      "icon": "🤖",
+      "category": "languages",
+      "ageLabel": "Ages 5–14",
+      "ageGroups": [
+        "2-5",
+        "6-9",
+        "10+"
+      ],
+      "pricing": "paid",
+      "description": "Short, witty animated movies that break down complex science, history, social studies, and health topics into easy-to-understand stories, followed by interactive quizzes and activities.",
+      "url": "https://www.brainpop.com/"
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "categories": [
+    {
+      "id": "science",
+      "pillLabel": "🔬 Science & Nature",
+      "label": "Science & Nature",
+      "badgeClass": "badge-yt-sci"
+    },
+    {
+      "id": "general",
+      "pillLabel": "🌎 General Knowledge",
+      "label": "General Knowledge",
+      "badgeClass": "badge-yt-gen"
+    },
+    {
+      "id": "curriculum",
+      "pillLabel": "📝 Curriculum & Printables",
+      "label": "Curriculum & Printables",
+      "badgeClass": "badge-yt-early"
+    },
+    {
+      "id": "calm",
+      "pillLabel": "🌿 Calm & Low-Stimulation",
+      "label": "Calm & Low-Stimulation",
+      "badgeClass": "badge-yt-art"
+    },
+    {
+      "id": "math",
+      "pillLabel": "🔢 Math & Coding",
+      "label": "Math & Coding",
+      "badgeClass": "badge-yt-math"
+    }
+  ],
+  "items": [
+    {
+      "name": "Learn Bright",
+      "icon": "📝",
+      "category": "curriculum",
+      "ageLabel": "Ages 5–13",
+      "handle": "@LearnBright",
+      "description": "Teacher-created animated lessons covering science, history, math, and language arts. Almost every video pairs with free downloadable worksheets and lesson plans on learnbright.org.",
+      "url": "https://www.youtube.com/c/LearnBright"
+    },
+    {
+      "name": "Free School",
+      "icon": "🌿",
+      "category": "calm",
+      "ageLabel": "Ages 5–12",
+      "handle": "@FreeSchool",
+      "description": "Calm, gentle mini-documentaries exploring famous artists, classical music, world history, and nature. Uses soothing narration and real imagery instead of loud, fast-paced cartoons.",
+      "url": "https://www.youtube.com/c/FreeSchool"
+    },
+    {
+      "name": "SciShow Kids",
+      "icon": "🔬",
+      "category": "science",
+      "ageLabel": "Ages 4–10",
+      "handle": "@SciShowKids",
+      "description": "Answers kids' everyday \"why\" and \"how\" questions—from how volcanoes erupt to why leaves change color—using fun host explanations and simple home science experiments.",
+      "url": "https://www.youtube.com/@SciShowKids"
+    },
+    {
+      "name": "Crash Course Kids",
+      "icon": "🚀",
+      "category": "science",
+      "ageLabel": "Ages 8–13",
+      "handle": "@crashcoursekids",
+      "description": "Fast-paced, curriculum-aligned 5th-grade science series covering Earth science, space, engineering, and ecosystems in clear, energetic 4-minute episodes.",
+      "url": "https://www.youtube.com/@crashcoursekids"
+    },
+    {
+      "name": "National Geographic Kids",
+      "icon": "🦁",
+      "category": "science",
+      "ageLabel": "Ages 5–13",
+      "handle": "@natgeokids",
+      "description": "Exciting wildlife footage, weird-but-true facts, and explorer adventures that introduce kids to animals, geography, and conservation around the globe.",
+      "url": "https://www.youtube.com/@natgeokids"
+    },
+    {
+      "name": "Peekaboo Kidz (Dr. Binocs Show)",
+      "icon": "🔭",
+      "category": "general",
+      "ageLabel": "Ages 5–11",
+      "handle": "@Peekaboo_Kidz",
+      "description": "Friendly animated character Dr. Binocs explains how the human body, weather, inventions, and history work using colorful, easy-to-follow storytelling.",
+      "url": "https://www.youtube.com/@Peekaboo_Kidz"
+    },
+    {
+      "name": "TED-Ed",
+      "icon": "💡",
+      "category": "general",
+      "ageLabel": "Ages 9+",
+      "handle": "@TEDEd",
+      "description": "Award-winning short animated lessons created by educators and animators that spark curiosity in science, history, literature, and brain-teasing logic riddles.",
+      "url": "https://www.youtube.com/@TEDEd"
+    },
+    {
+      "name": "Numberblocks",
+      "icon": "🔢",
+      "category": "math",
+      "ageLabel": "Ages 3–7",
+      "handle": "@Numberblocks",
+      "description": "BBC-produced musical animations where friendly block characters teach counting, addition, multiplication, and number sense visually so young kids truly understand how numbers work.",
+      "url": "https://www.youtube.com/@Numberblocks"
+    },
+    {
+      "name": "Alphablocks",
+      "icon": "🔤",
+      "category": "curriculum",
+      "ageLabel": "Ages 3–7",
+      "handle": "@alphablocks",
+      "description": "Companion series to Numberblocks where animated letter characters join together to sound out words, making phonics and early reading intuitive and memorable.",
+      "url": "https://www.youtube.com/@alphablocks"
+    },
+    {
+      "name": "Art for Kids Hub",
+      "icon": "🎨",
+      "category": "calm",
+      "ageLabel": "Ages 4–14",
+      "handle": "@artforkidshub",
+      "description": "Real-time, step-by-step drawing tutorials led by a dad and his kids. Encourages screen-free creativity with paper and markers while building focus and confidence.",
+      "url": "https://www.youtube.com/@artforkidshub"
+    },
+    {
+      "name": "Smile and Learn",
+      "icon": "😊",
+      "category": "curriculum",
+      "ageLabel": "Ages 3–10",
+      "handle": "@SmileandLearnEnglish",
+      "description": "Teacher-designed animated videos covering vocabulary, emotions, basic math, geography, and life skills in a warm, accessible style for preschoolers and early elementary kids.",
+      "url": "https://www.youtube.com/@SmileandLearnEnglish"
+    },
+    {
+      "name": "Storyline Online",
+      "icon": "📖",
+      "category": "calm",
+      "ageLabel": "Ages 4–10",
+      "handle": "@StorylineOnline",
+      "description": "Celebrated actors read beloved children's picture books aloud alongside gentle animations, helping kids fall in love with stories, vocabulary, and expressive reading.",
+      "url": "https://www.youtube.com/@StorylineOnline"
+    }
+  ]
+}

@@ -693,14 +693,14 @@
       </div>
       <h1>Best Educational Apps &amp; YouTube Channels for Kids</h1>
       <p>
-        Explore 16 parent-approved educational apps across 5 core subjects plus 12 high-signal YouTube channels. Filter by age group, subject, or pricing and visit each official website directly.
+        Explore <span data-app-count>…</span> parent-approved educational apps across <span data-app-cat-count>…</span> core subjects plus <span data-yt-count>…</span> high-signal YouTube channels. Filter by age group, subject, or pricing and visit each official website directly.
       </p>
       <div class="hero-nav">
         <a href="#apps-section" class="btn-hero-primary">
-          <span>📱 Explore 16 Learning Apps</span>
+          <span>📱 Explore <span data-app-count>…</span> Learning Apps</span>
         </a>
         <a href="#youtube-section" class="btn-hero-yt">
-          <span>▶️ Explore 12 YouTube Channels</span>
+          <span>▶️ Explore <span data-yt-count>…</span> YouTube Channels</span>
         </a>
       </div>
     </div>
@@ -746,7 +746,7 @@
     <section id="apps-section" aria-labelledby="apps-heading">
       <div class="section-header">
         <span class="section-kicker">📱 Interactive App Directory</span>
-        <h2 id="apps-heading" class="section-title">Top 16 Educational Apps for Kids</h2>
+        <h2 id="apps-heading" class="section-title">Top <span data-app-count>…</span> Educational Apps for Kids</h2>
         <p class="section-desc">
           Filter by category, target age range, or pricing model—or search by skill (e.g., "phonics", "coding", "Singapore Math", "Montessori").
         </p>
@@ -754,14 +754,7 @@
 
       <!-- Apps Filter Bar -->
       <div class="filter-panel">
-        <div class="pill-row" role="tablist" aria-label="Filter apps by category">
-          <button type="button" class="filter-pill app-cat-pill active" data-cat="all">All Categories (16)</button>
-          <button type="button" class="filter-pill app-cat-pill" data-cat="early">🧸 Early Learning</button>
-          <button type="button" class="filter-pill app-cat-pill" data-cat="reading">📖 Reading &amp; Literacy</button>
-          <button type="button" class="filter-pill app-cat-pill" data-cat="math">🔢 Math</button>
-          <button type="button" class="filter-pill app-cat-pill" data-cat="coding">💻 Coding &amp; STEM</button>
-          <button type="button" class="filter-pill app-cat-pill" data-cat="languages">🌍 Languages &amp; Knowledge</button>
-        </div>
+        <div id="app-pills" class="pill-row" role="tablist" aria-label="Filter apps by category"></div>
 
         <div class="controls-row">
           <div class="input-wrap">
@@ -791,7 +784,7 @@
       </div>
 
       <div class="results-bar">
-        <span id="app-count-text">Showing 16 of 16 apps</span>
+        <span id="app-count-text">Loading apps…</span>
       </div>
 
       <div id="apps-grid" class="cards-grid"></div>
@@ -799,7 +792,7 @@
       <div id="apps-empty" class="empty-state hidden">
         <h3>No educational apps match your current filters</h3>
         <p>Try clearing your search query or choosing a broader age or pricing filter.</p>
-        <button type="button" id="apps-empty-reset">Show All 16 Apps</button>
+        <button type="button" id="apps-empty-reset">Show All Apps</button>
       </div>
     </section>
 
@@ -822,14 +815,7 @@
 
       <!-- YouTube Filter Bar -->
       <div class="filter-panel">
-        <div class="pill-row" role="tablist" aria-label="Filter YouTube channels by subject">
-          <button type="button" class="filter-pill yt-pill active" data-yt-sub="all">All Channels (12)</button>
-          <button type="button" class="filter-pill yt-pill" data-yt-sub="science">🔬 Science &amp; Nature</button>
-          <button type="button" class="filter-pill yt-pill" data-yt-sub="general">🌎 General Knowledge</button>
-          <button type="button" class="filter-pill yt-pill" data-yt-sub="curriculum">📝 Curriculum &amp; Printables</button>
-          <button type="button" class="filter-pill yt-pill" data-yt-sub="calm">🌿 Calm &amp; Low-Stimulation</button>
-          <button type="button" class="filter-pill yt-pill" data-yt-sub="math">🔢 Math &amp; Coding</button>
-        </div>
+        <div id="yt-pills" class="pill-row" role="tablist" aria-label="Filter YouTube channels by subject"></div>
 
         <div class="controls-row yt-controls">
           <div class="input-wrap" style="max-width: 440px;">
@@ -844,7 +830,7 @@
       </div>
 
       <div class="results-bar">
-        <span id="yt-count-text">Showing 12 of 12 channels</span>
+        <span id="yt-count-text">Loading channels…</span>
       </div>
 
       <div id="yt-grid" class="cards-grid"></div>
@@ -852,7 +838,7 @@
       <div id="yt-empty" class="empty-state hidden">
         <h3>No YouTube channels match your search</h3>
         <p>Try resetting the subject filter or searching for another topic.</p>
-        <button type="button" id="yt-empty-reset" style="background: var(--yt-red);">Show All 12 Channels</button>
+        <button type="button" id="yt-empty-reset" style="background: var(--yt-red);">Show All Channels</button>
       </div>
     </section>
 
@@ -876,359 +862,40 @@
       "use strict";
 
       /* ----------------------------------------------------------------------
-         1. DATASET: 16 EDUCATIONAL APPS ACROSS 5 CATEGORIES
+         1. DATA (loaded from data/apps.json and data/youtube.json)
          ---------------------------------------------------------------------- */
-      const APPS_DATA = [
-        {
-          name: "Khan Academy Kids",
-          icon: "🐻",
-          category: "early",
-          categoryLabel: "Early Learning",
-          badgeClass: "badge-cat-early",
-          ageLabel: "Ages 2–8",
-          ageGroups: ["2-5", "6-9"],
-          pricingLabel: "Free",
-          pricingType: "free",
-          description: "A 100% free, ad-free early learning app created with Stanford educators. Kids build reading, math, logic, and social-emotional skills through adaptive games, digital storybooks, and creative drawing tools.",
-          url: "https://learn.khanacademy.org/khan-academy-kids/"
-        },
-        {
-          name: "PBS Kids Games",
-          icon: "📺",
-          category: "early",
-          categoryLabel: "Early Learning",
-          badgeClass: "badge-cat-early",
-          ageLabel: "Ages 2–8",
-          ageGroups: ["2-5", "6-9"],
-          pricingLabel: "Free",
-          pricingType: "free",
-          description: "Hundreds of ad-free mini-games featuring beloved characters like Daniel Tiger and Wild Kratts. Helps toddlers and preschoolers practice counting, rhyming, and problem-solving—even offline once downloaded.",
-          url: "https://pbskids.org/games/"
-        },
-        {
-          name: "Pok Pok",
-          icon: "🪵",
-          category: "early",
-          categoryLabel: "Early Learning",
-          badgeClass: "badge-cat-early",
-          ageLabel: "Ages 2–7",
-          ageGroups: ["2-5", "6-9"],
-          pricingLabel: "Paid",
-          pricingType: "paid",
-          description: "A calm, Montessori-inspired digital playroom with no timers, high scores, or loud flashing rewards. Encourages toddlers and young kids to explore open-ended toys, puzzles, music, and everyday life at their own pace.",
-          url: "https://playpokpok.com/"
-        },
-        {
-          name: "Kids Academy",
-          icon: "🎓",
-          category: "early",
-          categoryLabel: "Early Learning",
-          badgeClass: "badge-cat-early",
-          ageLabel: "Ages 2–10",
-          ageGroups: ["2-5", "6-9", "10+"],
-          pricingLabel: "Freemium",
-          pricingType: "freemium",
-          description: "A structured PreK–Grade 3 learning program combining interactive games, letter tracing, Singapore Math, phonics, and printable worksheets to guide kids step-by-step through core school subjects.",
-          url: "https://www.kidsacademy.mobi/"
-        },
-        {
-          name: "Duolingo ABC",
-          icon: "🦉",
-          category: "reading",
-          categoryLabel: "Reading & Literacy",
-          badgeClass: "badge-cat-reading",
-          ageLabel: "Ages 3–7",
-          ageGroups: ["2-5", "6-9"],
-          pricingLabel: "Free",
-          pricingType: "free",
-          description: "Short, playful, ad-free lessons that teach young children letter sounds, phonics, handwriting, and sight words. Builds early reading confidence in just a few minutes a day.",
-          url: "https://www.duolingo.com/abc"
-        },
-        {
-          name: "Teach Your Monster to Read",
-          icon: "👾",
-          category: "reading",
-          categoryLabel: "Reading & Literacy",
-          badgeClass: "badge-cat-reading",
-          ageLabel: "Ages 4–8",
-          ageGroups: ["2-5", "6-9"],
-          pricingLabel: "Freemium",
-          pricingType: "freemium",
-          description: "Kids design their own monster and go on a magical adventure where they master letter sounds, word blending, and reading full sentences. Free to play on desktop web browsers.",
-          url: "https://www.teachyourmonstertoread.com/"
-        },
-        {
-          name: "Epic!",
-          icon: "📚",
-          category: "reading",
-          categoryLabel: "Reading & Literacy",
-          badgeClass: "badge-cat-reading",
-          ageLabel: "Ages 4–12",
-          ageGroups: ["2-5", "6-9", "10+"],
-          pricingLabel: "Freemium",
-          pricingType: "freemium",
-          description: "An interactive digital library with over 40,000 popular kids' books, audiobooks, and \"Read-to-Me\" stories that highlight words aloud—making independent reading fun and accessible.",
-          url: "https://www.getepic.com/"
-        },
-        {
-          name: "Libby (by OverDrive)",
-          icon: "🏛️",
-          category: "reading",
-          categoryLabel: "Reading & Literacy",
-          badgeClass: "badge-cat-reading",
-          ageLabel: "Ages 4+",
-          ageGroups: ["2-5", "6-9", "10+"],
-          pricingLabel: "Free",
-          pricingType: "free",
-          description: "Connects directly to your local public library card so kids can borrow thousands of picture books, chapter books, and audiobooks for free on any tablet or phone.",
-          url: "https://libbyapp.com/"
-        },
-        {
-          name: "Prodigy Math",
-          icon: "🧙‍♂️",
-          category: "math",
-          categoryLabel: "Math",
-          badgeClass: "badge-cat-math",
-          ageLabel: "Ages 6–14",
-          ageGroups: ["6-9", "10+"],
-          pricingLabel: "Freemium",
-          pricingType: "freemium",
-          description: "Turns Grade 1–8 math practice into a fantasy adventure game where kids battle monsters and complete quests by solving curriculum-aligned math problems tailored to their skill level.",
-          url: "https://www.prodigygame.com/"
-        },
-        {
-          name: "Moose Math",
-          icon: "🫎",
-          category: "math",
-          categoryLabel: "Math",
-          badgeClass: "badge-cat-math",
-          ageLabel: "Ages 3–7",
-          ageGroups: ["2-5", "6-9"],
-          pricingLabel: "Free",
-          pricingType: "free",
-          description: "Created by Duck Duck Moose and Khan Academy, this free app teaches counting, addition, subtraction, shapes, and sorting through cheerful carnival and town-building mini-games.",
-          url: "https://www.duckduckmoose.com/educational-iphone-itouch-apps-for-kids/moose-math/"
-        },
-        {
-          name: "SplashLearn",
-          icon: "🐬",
-          category: "math",
-          categoryLabel: "Math",
-          badgeClass: "badge-cat-math",
-          ageLabel: "Ages 4–11",
-          ageGroups: ["2-5", "6-9", "10+"],
-          pricingLabel: "Freemium",
-          pricingType: "freemium",
-          description: "Personalized PreK–Grade 5 math and reading lessons that use visual models and interactive games to explain tricky topics like fractions, geometry, and multiplication.",
-          url: "https://www.splashlearn.com/"
-        },
-        {
-          name: "ScratchJr",
-          icon: "🐱",
-          category: "coding",
-          categoryLabel: "Coding & STEM",
-          badgeClass: "badge-cat-coding",
-          ageLabel: "Ages 5–7",
-          ageGroups: ["2-5", "6-9"],
-          pricingLabel: "Free",
-          pricingType: "free",
-          description: "Designed by MIT for young learners, kids snap together colorful visual blocks to make characters move, jump, dance, and tell stories—learning coding logic before they even need to read.",
-          url: "https://www.scratchjr.org/"
-        },
-        {
-          name: "Scratch",
-          icon: "🧩",
-          category: "coding",
-          categoryLabel: "Coding & STEM",
-          badgeClass: "badge-cat-coding",
-          ageLabel: "Ages 8–16",
-          ageGroups: ["6-9", "10+"],
-          pricingLabel: "Free",
-          pricingType: "free",
-          description: "The world's largest free coding community for kids. Young creators build their own playable games, animations, and interactive stories using visual block programming.",
-          url: "https://scratch.mit.edu/"
-        },
-        {
-          name: "Thinkrolls",
-          icon: "⚙️",
-          category: "coding",
-          categoryLabel: "Coding & STEM",
-          badgeClass: "badge-cat-coding",
-          ageLabel: "Ages 4–10",
-          ageGroups: ["2-5", "6-9", "10+"],
-          pricingLabel: "Paid",
-          pricingType: "paid",
-          description: "Clever physics-based maze puzzles where kids use gravity, heat, elasticity, and force to guide rolling characters to the finish line—sharpening logic and spatial reasoning.",
-          url: "https://avokiddo.com/thinkrolls/"
-        },
-        {
-          name: "Duolingo",
-          icon: "🌍",
-          category: "languages",
-          categoryLabel: "Languages & Knowledge",
-          badgeClass: "badge-cat-lang",
-          ageLabel: "Ages 7+",
-          ageGroups: ["6-9", "10+"],
-          pricingLabel: "Freemium",
-          pricingType: "freemium",
-          description: "Bite-sized daily lessons in 40+ languages with speaking, listening, and reading exercises. Great for older kids who can read comfortably and enjoy streak-based motivation.",
-          url: "https://www.duolingo.com/"
-        },
-        {
-          name: "BrainPOP / BrainPOP Jr.",
-          icon: "🤖",
-          category: "languages",
-          categoryLabel: "Languages & Knowledge",
-          badgeClass: "badge-cat-lang",
-          ageLabel: "Ages 5–14",
-          ageGroups: ["2-5", "6-9", "10+"],
-          pricingLabel: "Paid",
-          pricingType: "paid",
-          description: "Short, witty animated movies that break down complex science, history, social studies, and health topics into easy-to-understand stories, followed by interactive quizzes and activities.",
-          url: "https://www.brainpop.com/"
-        }
-      ];
+      let APPS_DATA = [];
+      let YOUTUBE_DATA = [];
+      let APP_CATS = {};
+      let YT_CATS = {};
+
+      const PRICING_LABELS = { free: "Free", freemium: "Freemium", paid: "Paid" };
+
+      function loadJson(path) {
+        return fetch(path, { cache: "no-cache" }).then(function (res) {
+          if (!res.ok) throw new Error(path + " (" + res.status + ")");
+          return res.json();
+        });
+      }
+
+      function esc(value) {
+        return String(value == null ? "" : value).replace(/[&<>"']/g, function (c) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+        });
+      }
+
+      function safeUrl(url) {
+        return /^https?:\/\//i.test(url) ? url : "#";
+      }
+
+      function indexCats(cats) {
+        const map = {};
+        cats.forEach(function (c) { map[c.id] = c; });
+        return map;
+      }
 
       /* ----------------------------------------------------------------------
-         2. DATASET: 12 EDUCATIONAL YOUTUBE CHANNELS FOR KIDS
-         ---------------------------------------------------------------------- */
-      const YOUTUBE_DATA = [
-        {
-          name: "Learn Bright",
-          icon: "📝",
-          subject: "curriculum",
-          subjectLabel: "Curriculum & Printables",
-          badgeClass: "badge-yt-early",
-          ageLabel: "Ages 5–13",
-          handle: "@LearnBright",
-          description: "Teacher-created animated lessons covering science, history, math, and language arts. Almost every video pairs with free downloadable worksheets and lesson plans on learnbright.org.",
-          url: "https://www.youtube.com/c/LearnBright"
-        },
-        {
-          name: "Free School",
-          icon: "🌿",
-          subject: "calm",
-          subjectLabel: "Calm & Low-Stimulation",
-          badgeClass: "badge-yt-art",
-          ageLabel: "Ages 5–12",
-          handle: "@FreeSchool",
-          description: "Calm, gentle mini-documentaries exploring famous artists, classical music, world history, and nature. Uses soothing narration and real imagery instead of loud, fast-paced cartoons.",
-          url: "https://www.youtube.com/c/FreeSchool"
-        },
-        {
-          name: "SciShow Kids",
-          icon: "🔬",
-          subject: "science",
-          subjectLabel: "Science & Nature",
-          badgeClass: "badge-yt-sci",
-          ageLabel: "Ages 4–10",
-          handle: "@SciShowKids",
-          description: "Answers kids' everyday \"why\" and \"how\" questions—from how volcanoes erupt to why leaves change color—using fun host explanations and simple home science experiments.",
-          url: "https://www.youtube.com/@SciShowKids"
-        },
-        {
-          name: "Crash Course Kids",
-          icon: "🚀",
-          subject: "science",
-          subjectLabel: "Science & Nature",
-          badgeClass: "badge-yt-sci",
-          ageLabel: "Ages 8–13",
-          handle: "@crashcoursekids",
-          description: "Fast-paced, curriculum-aligned 5th-grade science series covering Earth science, space, engineering, and ecosystems in clear, energetic 4-minute episodes.",
-          url: "https://www.youtube.com/@crashcoursekids"
-        },
-        {
-          name: "National Geographic Kids",
-          icon: "🦁",
-          subject: "science",
-          subjectLabel: "Science & Nature",
-          badgeClass: "badge-yt-sci",
-          ageLabel: "Ages 5–13",
-          handle: "@natgeokids",
-          description: "Exciting wildlife footage, weird-but-true facts, and explorer adventures that introduce kids to animals, geography, and conservation around the globe.",
-          url: "https://www.youtube.com/@natgeokids"
-        },
-        {
-          name: "Peekaboo Kidz (Dr. Binocs Show)",
-          icon: "🔭",
-          subject: "general",
-          subjectLabel: "General Knowledge",
-          badgeClass: "badge-yt-gen",
-          ageLabel: "Ages 5–11",
-          handle: "@Peekaboo_Kidz",
-          description: "Friendly animated character Dr. Binocs explains how the human body, weather, inventions, and history work using colorful, easy-to-follow storytelling.",
-          url: "https://www.youtube.com/@Peekaboo_Kidz"
-        },
-        {
-          name: "TED-Ed",
-          icon: "💡",
-          subject: "general",
-          subjectLabel: "General Knowledge",
-          badgeClass: "badge-yt-gen",
-          ageLabel: "Ages 9+",
-          handle: "@TEDEd",
-          description: "Award-winning short animated lessons created by educators and animators that spark curiosity in science, history, literature, and brain-teasing logic riddles.",
-          url: "https://www.youtube.com/@TEDEd"
-        },
-        {
-          name: "Numberblocks",
-          icon: "🔢",
-          subject: "math",
-          subjectLabel: "Math & Coding",
-          badgeClass: "badge-yt-math",
-          ageLabel: "Ages 3–7",
-          handle: "@Numberblocks",
-          description: "BBC-produced musical animations where friendly block characters teach counting, addition, multiplication, and number sense visually so young kids truly understand how numbers work.",
-          url: "https://www.youtube.com/@Numberblocks"
-        },
-        {
-          name: "Alphablocks",
-          icon: "🔤",
-          subject: "curriculum",
-          subjectLabel: "Curriculum & Printables",
-          badgeClass: "badge-yt-early",
-          ageLabel: "Ages 3–7",
-          handle: "@alphablocks",
-          description: "Companion series to Numberblocks where animated letter characters join together to sound out words, making phonics and early reading intuitive and memorable.",
-          url: "https://www.youtube.com/@alphablocks"
-        },
-        {
-          name: "Art for Kids Hub",
-          icon: "🎨",
-          subject: "calm",
-          subjectLabel: "Calm & Low-Stimulation",
-          badgeClass: "badge-yt-art",
-          ageLabel: "Ages 4–14",
-          handle: "@artforkidshub",
-          description: "Real-time, step-by-step drawing tutorials led by a dad and his kids. Encourages screen-free creativity with paper and markers while building focus and confidence.",
-          url: "https://www.youtube.com/@artforkidshub"
-        },
-        {
-          name: "Smile and Learn",
-          icon: "😊",
-          subject: "curriculum",
-          subjectLabel: "Curriculum & Printables",
-          badgeClass: "badge-yt-early",
-          ageLabel: "Ages 3–10",
-          handle: "@SmileandLearnEnglish",
-          description: "Teacher-designed animated videos covering vocabulary, emotions, basic math, geography, and life skills in a warm, accessible style for preschoolers and early elementary kids.",
-          url: "https://www.youtube.com/@SmileandLearnEnglish"
-        },
-        {
-          name: "Storyline Online",
-          icon: "📖",
-          subject: "calm",
-          subjectLabel: "Calm & Low-Stimulation",
-          badgeClass: "badge-yt-art",
-          ageLabel: "Ages 4–10",
-          handle: "@StorylineOnline",
-          description: "Celebrated actors read beloved children's picture books aloud alongside gentle animations, helping kids fall in love with stories, vocabulary, and expressive reading.",
-          url: "https://www.youtube.com/@StorylineOnline"
-        }
-      ];
-
-      /* ----------------------------------------------------------------------
-         3. STATE & DOM REFERENCES
+         2. STATE & DOM REFERENCES
          ---------------------------------------------------------------------- */
       const appState = {
         category: "all",
@@ -1268,13 +935,14 @@
         const query = appState.search.trim().toLowerCase();
 
         const filtered = APPS_DATA.filter(function (app) {
+          const cat = APP_CATS[app.category] || {};
           const matchCat = appState.category === "all" || app.category === appState.category;
-          const matchAge = appState.age === "all" || app.ageGroups.indexOf(appState.age) !== -1;
-          const matchPrice = appState.price === "all" || app.pricingType === appState.price;
+          const matchAge = appState.age === "all" || (app.ageGroups || []).indexOf(appState.age) !== -1;
+          const matchPrice = appState.price === "all" || app.pricing === appState.price;
           const matchQuery =
             query === "" ||
             app.name.toLowerCase().indexOf(query) !== -1 ||
-            app.categoryLabel.toLowerCase().indexOf(query) !== -1 ||
+            (cat.label || "").toLowerCase().indexOf(query) !== -1 ||
             app.description.toLowerCase().indexOf(query) !== -1;
 
           return matchCat && matchAge && matchPrice && matchQuery;
@@ -1294,23 +962,23 @@
 
         grid.innerHTML = filtered
           .map(function (app) {
-            const priceBadgeClass = app.pricingType;
+            const cat = APP_CATS[app.category] || {};
             return (
               '<article class="card">' +
                 '<div>' +
                   '<div class="card-top">' +
-                    '<div class="card-icon" aria-hidden="true">' + app.icon + '</div>' +
-                    '<span class="badge ' + app.badgeClass + '">' + app.categoryLabel + '</span>' +
+                    '<div class="card-icon" aria-hidden="true">' + esc(app.icon) + '</div>' +
+                    '<span class="badge ' + esc(cat.badgeClass) + '">' + esc(cat.label) + '</span>' +
                   '</div>' +
-                  '<h3 class="card-title">' + app.name + '</h3>' +
+                  '<h3 class="card-title">' + esc(app.name) + '</h3>' +
                   '<div class="meta-tags">' +
-                    '<span class="meta-tag">👶 ' + app.ageLabel + '</span>' +
-                    '<span class="meta-tag ' + priceBadgeClass + '">🏷️ ' + app.pricingLabel + '</span>' +
+                    '<span class="meta-tag">👶 ' + esc(app.ageLabel) + '</span>' +
+                    '<span class="meta-tag ' + esc(app.pricing) + '">🏷️ ' + esc(PRICING_LABELS[app.pricing] || app.pricing) + '</span>' +
                   '</div>' +
-                  '<p class="card-desc">' + app.description + '</p>' +
+                  '<p class="card-desc">' + esc(app.description) + '</p>' +
                 '</div>' +
                 '<div class="card-footer">' +
-                  '<a href="' + app.url + '" target="_blank" rel="noopener noreferrer" class="btn-visit">' +
+                  '<a href="' + esc(safeUrl(app.url)) + '" target="_blank" rel="noopener noreferrer" class="btn-visit">' +
                     '<span>Visit Website</span>' +
                     externalIconSvg +
                   '</a>' +
@@ -1330,12 +998,13 @@
         const query = ytState.search.trim().toLowerCase();
 
         const filtered = YOUTUBE_DATA.filter(function (ch) {
-          const matchSub = ytState.subject === "all" || ch.subject === ytState.subject;
+          const cat = YT_CATS[ch.category] || {};
+          const matchSub = ytState.subject === "all" || ch.category === ytState.subject;
           const matchQuery =
             query === "" ||
             ch.name.toLowerCase().indexOf(query) !== -1 ||
-            ch.subjectLabel.toLowerCase().indexOf(query) !== -1 ||
-            ch.handle.toLowerCase().indexOf(query) !== -1 ||
+            (cat.label || "").toLowerCase().indexOf(query) !== -1 ||
+            (ch.handle || "").toLowerCase().indexOf(query) !== -1 ||
             ch.description.toLowerCase().indexOf(query) !== -1;
 
           return matchSub && matchQuery;
@@ -1355,22 +1024,23 @@
 
         grid.innerHTML = filtered
           .map(function (ch) {
+            const cat = YT_CATS[ch.category] || {};
             return (
               '<article class="card yt-card">' +
                 '<div>' +
                   '<div class="card-top">' +
-                    '<div class="card-icon" aria-hidden="true">' + ch.icon + '</div>' +
-                    '<span class="badge ' + ch.badgeClass + '">' + ch.subjectLabel + '</span>' +
+                    '<div class="card-icon" aria-hidden="true">' + esc(ch.icon) + '</div>' +
+                    '<span class="badge ' + esc(cat.badgeClass) + '">' + esc(cat.label) + '</span>' +
                   '</div>' +
-                  '<h3 class="card-title">' + ch.name + '</h3>' +
+                  '<h3 class="card-title">' + esc(ch.name) + '</h3>' +
                   '<div class="meta-tags">' +
-                    '<span class="meta-tag">👶 ' + ch.ageLabel + '</span>' +
+                    '<span class="meta-tag">👶 ' + esc(ch.ageLabel) + '</span>' +
                     '<span class="meta-tag free">▶️ Free on YouTube</span>' +
                   '</div>' +
-                  '<p class="card-desc">' + ch.description + '</p>' +
+                  '<p class="card-desc">' + esc(ch.description) + '</p>' +
                 '</div>' +
                 '<div class="card-footer">' +
-                  '<a href="' + ch.url + '" target="_blank" rel="noopener noreferrer" class="btn-visit yt">' +
+                  '<a href="' + esc(safeUrl(ch.url)) + '" target="_blank" rel="noopener noreferrer" class="btn-visit yt">' +
                     ytPlayIconSvg +
                     '<span>Watch on YouTube</span>' +
                     externalIconSvg +
@@ -1385,7 +1055,31 @@
       /* ----------------------------------------------------------------------
          5. INITIALIZATION & EVENT BINDINGS
          ---------------------------------------------------------------------- */
-      function init() {
+      function buildPills(containerId, cats, total, allLabel, cls, attr) {
+        const box = document.getElementById(containerId);
+        box.innerHTML =
+          '<button type="button" class="filter-pill ' + cls + ' active" ' + attr + '="all">' + allLabel + ' (' + total + ')</button>' +
+          cats.map(function (c) {
+            return '<button type="button" class="filter-pill ' + cls + '" ' + attr + '="' + esc(c.id) + '">' + esc(c.pillLabel || c.label) + '</button>';
+          }).join("");
+      }
+
+      function setCounts(selector, value) {
+        document.querySelectorAll(selector).forEach(function (el) { el.textContent = value; });
+      }
+
+      function init(apps, yt) {
+        APPS_DATA = apps.items;
+        YOUTUBE_DATA = yt.items;
+        APP_CATS = indexCats(apps.categories);
+        YT_CATS = indexCats(yt.categories);
+
+        setCounts("[data-app-count]", APPS_DATA.length);
+        setCounts("[data-yt-count]", YOUTUBE_DATA.length);
+        setCounts("[data-app-cat-count]", apps.categories.length);
+        buildPills("app-pills", apps.categories, APPS_DATA.length, "All Categories", "app-cat-pill", "data-cat");
+        buildPills("yt-pills", yt.categories, YOUTUBE_DATA.length, "All Channels", "yt-pill", "data-yt-sub");
+
         // App category pills
         const catPills = document.querySelectorAll(".app-cat-pill");
         catPills.forEach(function (btn) {
@@ -1470,10 +1164,20 @@
         renderYouTube();
       }
 
+      function start() {
+        Promise.all([loadJson("data/apps.json"), loadJson("data/youtube.json")])
+          .then(function (res) { init(res[0], res[1]); })
+          .catch(function (err) {
+            console.error("Failed to load data:", err);
+            document.getElementById("app-count-text").textContent = "Could not load data. If opened from disk, serve the folder over http (e.g. python -m http.server).";
+            document.getElementById("yt-count-text").textContent = "";
+          });
+      }
+
       if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", init);
+        document.addEventListener("DOMContentLoaded", start);
       } else {
-        init();
+        start();
       }
     })();
   </script>
