@@ -12,946 +12,14 @@
   <link rel="icon" href="./icons/app-icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
   <title>Best Educational Apps &amp; YouTube Channels for Kids</title>
-  <style>
-    /* ==========================================================================
-       1. DESIGN TOKENS & RESET (100% Self-Contained, Zero External Dependencies)
-       ========================================================================== */
-    :root {
-      --bg-page: #f8fafc;
-      --bg-card: #ffffff;
-      --bg-subtle: #f1f5f9;
-      --text-main: #0f172a;
-      --text-secondary: #475569;
-      --text-muted: #64748b;
-      --border-light: #e2e8f0;
-      --border-focus: #6366f1;
-
-      --primary: #4f46e5;
-      --primary-dark: #3730a3;
-      --primary-light: #eef2ff;
-
-      --yt-red: #e11d48;
-      --yt-red-dark: #be123c;
-      --yt-red-light: #ffe4e6;
-
-      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
-      --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
-      --radius-md: 12px;
-      --radius-lg: 18px;
-      --radius-full: 9999px;
-      --transition: all 0.2s ease;
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text-main);
-      background-color: var(--bg-page);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
-      padding-bottom: calc(5rem + env(safe-area-inset-bottom));
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    button, input, select {
-      font-family: inherit;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    button, a {
-      touch-action: manipulation;
-    }
-
-    /* ==========================================================================
-       2. LAYOUT UTILITIES
-       ========================================================================== */
-    .container {
-      width: 100%;
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 1.25rem;
-    }
-
-    @media (min-width: 768px) {
-      .container {
-        padding: 0 2rem;
-      }
-    }
-
-    /* ==========================================================================
-       3. HERO HEADER
-       ========================================================================== */
-    .hero {
-      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 52%, #4338ca 100%);
-      color: #ffffff;
-      padding: 3rem 0 3.5rem;
-      position: relative;
-      overflow: hidden;
-      scroll-margin-top: 1rem;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-      background-size: 24px 24px;
-      pointer-events: none;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      color: #e0e7ff;
-      padding: 0.4rem 0.9rem;
-      border-radius: var(--radius-full);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .hero h1 {
-      margin-top: 1rem;
-      font-size: clamp(1.85rem, 4vw, 3rem);
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      max-width: 820px;
-    }
-
-    .hero p {
-      margin-top: 1rem;
-      font-size: clamp(1rem, 1.8vw, 1.15rem);
-      color: #c7d2fe;
-      max-width: 720px;
-      line-height: 1.6;
-    }
-
-    .hero-nav {
-      margin-top: 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .btn-hero-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #ffffff;
-      color: #1e1b4b;
-      font-weight: 700;
-      font-size: 0.9rem;
-      padding: 0.7rem 1.25rem;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-    }
-
-    .btn-hero-primary:hover {
-      background: #eef2ff;
-      transform: translateY(-1px);
-    }
-
-    .btn-hero-yt {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--yt-red);
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 0.9rem;
-      padding: 0.7rem 1.25rem;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-    }
-
-    .btn-hero-yt:hover {
-      background: var(--yt-red-dark);
-      transform: translateY(-1px);
-    }
-
-    /* ==========================================================================
-       4. QUICK START GUIDE FOR PARENTS
-       ========================================================================== */
-    .quick-start {
-      margin-top: -1.75rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .quick-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    @media (min-width: 768px) {
-      .quick-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .quick-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 1.25rem;
-      box-shadow: var(--shadow-md);
-      display: flex;
-      gap: 0.9rem;
-      align-items: flex-start;
-    }
-
-    .quick-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.35rem;
-      flex-shrink: 0;
-    }
-
-    .quick-card h2 {
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--primary);
-    }
-
-    .quick-card p {
-      margin-top: 0.25rem;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      line-height: 1.45;
-    }
-
-    .quick-card strong {
-      color: var(--text-main);
-    }
-
-    /* ==========================================================================
-       5. SECTION HEADINGS & FILTER CONTROLS
-       ========================================================================== */
-    main {
-      flex: 1;
-      padding: 2.75rem 0 4rem;
-    }
-
-    .section-header {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    main section {
-      scroll-margin-top: 1rem;
-    }
-
-    .section-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--primary);
-    }
-
-    .section-kicker.yt {
-      color: var(--yt-red);
-    }
-
-    .section-title {
-      font-size: clamp(1.5rem, 3vw, 2.1rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--text-main);
-    }
-
-    .section-desc {
-      font-size: 0.98rem;
-      color: var(--text-secondary);
-      max-width: 760px;
-    }
-
-    .filter-panel {
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 1.25rem;
-      box-shadow: var(--shadow-sm);
-      margin-bottom: 1.5rem;
-    }
-
-    @media (max-width: 767px) {
-      .filter-panel {
-        position: sticky;
-        top: env(safe-area-inset-top);
-        z-index: 20;
-        margin-left: -0.35rem;
-        margin-right: -0.35rem;
-        background: rgba(255, 255, 255, 0.97);
-        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
-        backdrop-filter: blur(14px);
-      }
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border-light);
-    }
-
-    .pill-row.no-border {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .filter-pill {
-      border: 1px solid transparent;
-      background: var(--bg-subtle);
-      color: var(--text-secondary);
-      font-size: 0.84rem;
-      font-weight: 600;
-      padding: 0.5rem 0.9rem;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .filter-pill:hover {
-      background: #e0e7ff;
-      color: var(--primary-dark);
-    }
-
-    .filter-pill.active {
-      background: var(--primary);
-      color: #ffffff;
-      box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3);
-    }
-
-    .yt-pill:hover {
-      background: var(--yt-red-light);
-      color: var(--yt-red-dark);
-    }
-
-    .yt-pill.active {
-      background: var(--yt-red);
-      color: #ffffff;
-      box-shadow: 0 2px 6px rgba(225, 29, 72, 0.3);
-    }
-
-    .controls-row {
-      margin-top: 1rem;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.75rem;
-    }
-
-    @media (min-width: 768px) {
-      .controls-row {
-        grid-template-columns: 2fr 1fr 1fr auto;
-        align-items: center;
-      }
-    }
-
-    .controls-row.yt-controls {
-      margin-top: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .input-wrap {
-      position: relative;
-      width: 100%;
-    }
-
-    .input-wrap svg {
-      position: absolute;
-      left: 0.85rem;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 16px;
-      height: 16px;
-      color: var(--text-muted);
-      pointer-events: none;
-    }
-
-    .control-input, .control-select {
-      width: 100%;
-      background: var(--bg-page);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-md);
-      padding: 0.6rem 0.85rem;
-      font-size: 0.88rem;
-      color: var(--text-main);
-      transition: var(--transition);
-    }
-
-    .control-input {
-      padding-left: 2.35rem;
-    }
-
-    .control-input:focus, .control-select:focus {
-      outline: none;
-      border-color: var(--border-focus);
-      background: #ffffff;
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-    }
-
-    .btn-reset {
-      background: var(--bg-subtle);
-      color: var(--text-secondary);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-md);
-      padding: 0.6rem 1rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      white-space: nowrap;
-    }
-
-    .btn-reset:hover {
-      background: #e2e8f0;
-      color: var(--text-main);
-    }
-
-    .results-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    /* ==========================================================================
-       6. CARDS GRID (APPS & YOUTUBE CHANNELS)
-       ========================================================================== */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.35rem;
-    }
-
-    @media (min-width: 680px) {
-      .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .cards-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
-      border-top: 4px solid var(--primary);
-      border-radius: var(--radius-lg);
-      padding: 1.4rem;
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: var(--transition);
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .card.yt-card {
-      border-top-color: var(--yt-red);
-    }
-
-    .card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 0.75rem;
-    }
-
-    .card-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      background: var(--primary-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.55rem;
-      flex-shrink: 0;
-    }
-
-    .yt-card .card-icon {
-      background: var(--yt-red-light);
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.3rem 0.65rem;
-      border-radius: var(--radius-full);
-      line-height: 1.2;
-    }
-
-    .badge-cat-early { background: #ecfdf5; color: #047857; }
-    .badge-cat-reading { background: #eff6ff; color: #1d4ed8; }
-    .badge-cat-math { background: #fffbeb; color: #b45309; }
-    .badge-cat-coding { background: #f5f3ff; color: #6d28d9; }
-    .badge-cat-lang { background: #fdf2f8; color: #be185d; }
-
-    .badge-yt-sci { background: #ecfdf5; color: #047857; }
-    .badge-yt-math { background: #fffbeb; color: #b45309; }
-    .badge-yt-art { background: #fdf4ff; color: #a21caf; }
-    .badge-yt-early { background: #eff6ff; color: #1d4ed8; }
-    .badge-yt-gen { background: #eef2ff; color: #4338ca; }
-
-    .card-title {
-      margin-top: 1rem;
-      font-size: 1.18rem;
-      font-weight: 800;
-      color: var(--text-main);
-      letter-spacing: -0.01em;
-    }
-
-    .meta-tags {
-      margin-top: 0.55rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-    }
-
-    .meta-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 0.25rem 0.6rem;
-      border-radius: 8px;
-      background: var(--bg-subtle);
-      color: var(--text-secondary);
-    }
-
-    .meta-tag.free {
-      background: #dcfce7;
-      color: #15803d;
-    }
-
-    .meta-tag.freemium {
-      background: #e0e7ff;
-      color: #3730a3;
-    }
-
-    .meta-tag.paid {
-      background: #fef3c7;
-      color: #b45309;
-    }
-
-    .card-desc {
-      margin-top: 0.85rem;
-      font-size: 0.92rem;
-      color: var(--text-secondary);
-      line-height: 1.58;
-    }
-
-    .card-footer {
-      margin-top: 1.25rem;
-      padding-top: 0.95rem;
-      border-top: 1px solid var(--border-light);
-    }
-
-    .btn-visit {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.45rem;
-      width: 100%;
-      background: var(--primary);
-      color: #ffffff;
-      font-size: 0.88rem;
-      font-weight: 700;
-      padding: 0.68rem 1rem;
-      border-radius: var(--radius-md);
-      transition: var(--transition);
-    }
-
-    .btn-visit:hover {
-      background: var(--primary-dark);
-    }
-
-    .btn-visit.yt {
-      background: var(--yt-red);
-    }
-
-    .btn-visit.yt:hover {
-      background: var(--yt-red-dark);
-    }
-
-    .btn-visit svg {
-      width: 15px;
-      height: 15px;
-      flex-shrink: 0;
-    }
-
-    /* ==========================================================================
-       7. EMPTY STATE & SECTION DIVIDER
-       ========================================================================== */
-    .empty-state {
-      background: var(--bg-card);
-      border: 1px dashed #cbd5e1;
-      border-radius: var(--radius-lg);
-      padding: 2.5rem 1.5rem;
-      text-align: center;
-    }
-
-    .empty-state h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .empty-state p {
-      margin-top: 0.35rem;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .empty-state button {
-      margin-top: 1rem;
-      background: var(--primary);
-      color: #ffffff;
-      border: none;
-      border-radius: var(--radius-md);
-      padding: 0.6rem 1.2rem;
-      font-size: 0.88rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .section-divider {
-      margin: 4rem 0 3.25rem;
-      border: 0;
-      border-top: 1px solid var(--border-light);
-    }
-
-    .parent-tip {
-      margin-top: 1rem;
-      display: inline-block;
-      background: #fffbeb;
-      border: 1px solid #fde68a;
-      color: #92400e;
-      font-size: 0.84rem;
-      padding: 0.65rem 0.95rem;
-      border-radius: var(--radius-md);
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    /* ========================================================================
-       8. MOBILE APP NAVIGATION
-       ======================================================================== */
-    .mobile-nav {
-      position: fixed;
-      z-index: 100;
-      left: 0.75rem;
-      right: 0.75rem;
-      bottom: calc(0.75rem + env(safe-area-inset-bottom));
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.35rem;
-      padding: 0.45rem;
-      background: rgba(15, 23, 42, 0.94);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 1.25rem;
-      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.3);
-      backdrop-filter: blur(16px);
-    }
-
-    .mobile-nav-button {
-      min-height: 3.6rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.1rem;
-      color: #cbd5e1;
-      background: transparent;
-      border: 0;
-      border-radius: 0.9rem;
-      font-size: 0.72rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .mobile-nav-button .nav-icon {
-      font-size: 1.25rem;
-      line-height: 1;
-    }
-
-    .mobile-nav-button.active {
-      color: #ffffff;
-      background: var(--primary);
-    }
-
-    .mobile-nav-button[data-target="youtube-section"].active {
-      background: var(--yt-red);
-    }
-
-    .install-button {
-      position: absolute;
-      top: 0.75rem;
-      right: 0.75rem;
-      z-index: 2;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      min-height: 2.75rem;
-      padding: 0.6rem 0.9rem;
-      color: #ffffff;
-      background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.26);
-      border-radius: var(--radius-full);
-      font-size: 0.8rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .install-button:hover {
-      background: rgba(255, 255, 255, 0.22);
-    }
-
-    @media (min-width: 768px) {
-      body {
-        padding-bottom: 0;
-      }
-
-      .mobile-nav {
-        left: 50%;
-        right: auto;
-        width: 420px;
-        transform: translateX(-50%);
-        opacity: 0.97;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero {
-        padding-top: 4.5rem;
-      }
-
-      .hero h1 {
-        font-size: 2rem;
-      }
-
-      .hero-nav {
-        display: none;
-      }
-
-      .quick-grid {
-        gap: 0.75rem;
-      }
-
-      .quick-card {
-        padding: 1rem;
-      }
-
-      main {
-        padding-top: 2rem;
-      }
-
-      .filter-panel {
-        padding: 1rem;
-      }
-
-      .pill-row {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        margin-right: -1rem;
-        padding-right: 1rem;
-        scrollbar-width: none;
-        scroll-snap-type: x proximity;
-      }
-
-      .pill-row::-webkit-scrollbar {
-        display: none;
-      }
-
-      .filter-pill {
-        flex: 0 0 auto;
-        scroll-snap-align: start;
-      }
-    }
-
-    /* Collapsible filters on phones: search + filter icon stay visible */
-    .filter-toggle {
-      display: none;
-    }
-
-    @media (max-width: 767px) {
-      .filter-panel {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
-        gap: 0.5rem;
-        padding: 0.6rem;
-        max-height: calc(100vh - 7rem);
-        max-height: calc(100dvh - 7rem);
-        overflow-y: auto;
-      }
-
-      .filter-panel .controls-row,
-      .filter-panel .controls-row.yt-controls {
-        display: contents;
-      }
-
-      .filter-panel .input-wrap {
-        grid-column: 1 / 3;
-        order: 1;
-        max-width: none !important;
-      }
-
-      .filter-toggle {
-        order: 2;
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 2.75rem;
-        color: var(--text-secondary);
-        background: var(--bg-subtle);
-        border: 1px solid var(--border-light);
-        border-radius: var(--radius-md);
-        cursor: pointer;
-      }
-
-      .filter-toggle svg {
-        width: 20px;
-        height: 20px;
-      }
-
-      .filter-toggle[aria-expanded="true"] {
-        color: #ffffff;
-        background: var(--primary);
-        border-color: var(--primary);
-      }
-
-      #yt-filter-panel .filter-toggle[aria-expanded="true"] {
-        background: var(--yt-red);
-        border-color: var(--yt-red);
-      }
-
-      .filter-badge {
-        position: absolute;
-        top: -0.35rem;
-        right: -0.35rem;
-        min-width: 1.15rem;
-        height: 1.15rem;
-        padding: 0 0.25rem;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        color: #ffffff;
-        background: var(--yt-red);
-        border-radius: var(--radius-full);
-        font-size: 0.68rem;
-        font-weight: 800;
-      }
-
-      .filter-panel .pill-row {
-        order: 3;
-        grid-column: 1 / -1;
-        min-width: 0;
-        padding-bottom: 0.6rem;
-      }
-
-      .filter-panel .control-select {
-        order: 4;
-      }
-
-      .filter-panel .btn-reset {
-        order: 5;
-        grid-column: 1 / -1;
-        width: 100%;
-      }
-
-      .filter-panel.collapsed .pill-row,
-      .filter-panel.collapsed .control-select,
-      .filter-panel.collapsed .btn-reset {
-        display: none;
-      }
-    }
-
-    /* ==========================================================================
-       9. FOOTER
-       ========================================================================== */
-    footer {
-      background: #0f172a;
-      color: #94a3b8;
-      padding: 2rem 0;
-      font-size: 0.85rem;
-      text-align: center;
-    }
-
-    footer strong {
-      color: #f8fafc;
-    }
-  </style>
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
 
   <!-- ========================================================================
        HERO SECTION
        ======================================================================== -->
-  <header class="hero">
+  <header class="hero" data-view="home">
     <button id="install-app" class="install-button hidden" type="button" aria-label="Install Kids Learning app">
       <span aria-hidden="true">⬇️</span>
       <span>Install app</span>
@@ -965,10 +33,10 @@
         Explore <span data-app-count>…</span> parent-approved educational apps across <span data-app-cat-count>…</span> core subjects plus <span data-yt-count>…</span> high-signal YouTube channels. Filter by age group, subject, or pricing and visit each official website directly.
       </p>
       <div class="hero-nav">
-        <a href="#apps-section" class="btn-hero-primary">
+        <a href="#apps" class="btn-hero-primary">
           <span>📱 Explore <span data-app-count>…</span> Learning Apps</span>
         </a>
-        <a href="#youtube-section" class="btn-hero-yt">
+        <a href="#channels" class="btn-hero-yt">
           <span>▶️ Explore <span data-yt-count>…</span> YouTube Channels</span>
         </a>
       </div>
@@ -978,7 +46,7 @@
   <!-- ========================================================================
        QUICK START GUIDE FOR PARENTS
        ======================================================================== -->
-  <section class="quick-start" aria-label="Quick Start Guide for Parents">
+  <section class="quick-start" data-view="home" aria-label="Quick Start Guide for Parents">
     <div class="container">
       <div class="quick-grid">
         <div class="quick-card">
@@ -1009,10 +77,10 @@
   <!-- ========================================================================
        MAIN CONTENT: APPS DIRECTORY + YOUTUBE CHANNELS DIRECTORY
        ======================================================================== -->
-  <main class="container">
+  <main class="container hidden">
 
     <!-- SECTION 1: EDUCATIONAL APPS -->
-    <section id="apps-section" aria-labelledby="apps-heading">
+    <section id="apps-section" data-view="apps" aria-labelledby="apps-heading">
       <div class="section-header">
         <span class="section-kicker">📱 Interactive App Directory</span>
         <h2 id="apps-heading" class="section-title">Top <span data-app-count>…</span> Educational Apps for Kids</h2>
@@ -1075,7 +143,7 @@
     <hr class="section-divider" />
 
     <!-- SECTION 2: EDUCATIONAL YOUTUBE CHANNELS -->
-    <section id="youtube-section" aria-labelledby="yt-heading">
+    <section id="youtube-section" data-view="channels" aria-labelledby="yt-heading">
       <div class="section-header">
         <span class="section-kicker yt">▶️ Curated Video Learning</span>
         <h2 id="yt-heading" class="section-title">Best Educational YouTube Channels for Kids</h2>
@@ -1137,15 +205,15 @@
   </footer>
 
   <nav class="mobile-nav" aria-label="Quick navigation">
-    <button class="mobile-nav-button active" type="button" data-target="page-top" aria-current="page">
+    <button class="mobile-nav-button active" type="button" data-nav="home" aria-current="page">
       <span class="nav-icon" aria-hidden="true">🏠</span>
       <span>Home</span>
     </button>
-    <button class="mobile-nav-button" type="button" data-target="apps-section">
+    <button class="mobile-nav-button" type="button" data-nav="apps">
       <span class="nav-icon" aria-hidden="true">📱</span>
       <span>Apps</span>
     </button>
-    <button class="mobile-nav-button" type="button" data-target="youtube-section">
+    <button class="mobile-nav-button" type="button" data-nav="channels">
       <span class="nav-icon" aria-hidden="true">▶️</span>
       <span>Channels</span>
     </button>
@@ -1489,12 +557,25 @@
 
       function start() {
         const navButtons = Array.from(document.querySelectorAll(".mobile-nav-button"));
-        const hero = document.querySelector(".hero");
-        hero.id = "page-top";
+        const mainEl = document.querySelector("main");
+        const VIEWS = ["home", "apps", "channels"];
+        const LEGACY_HASHES = { "apps-section": "apps", "youtube-section": "channels" };
+        let currentView = null;
 
-        function setActiveNavigation(target) {
+        function viewFromHash() {
+          const name = location.hash.replace("#", "");
+          const view = LEGACY_HASHES[name] || name;
+          return VIEWS.indexOf(view) !== -1 ? view : "home";
+        }
+
+        function showView(view) {
+          document.querySelectorAll("[data-view]").forEach(function (el) {
+            el.classList.toggle("hidden", el.getAttribute("data-view") !== view);
+          });
+          mainEl.classList.toggle("hidden", view === "home");
+          document.querySelector(".section-divider").classList.add("hidden");
           navButtons.forEach(function (button) {
-            const active = button.getAttribute("data-target") === target;
+            const active = button.getAttribute("data-nav") === view;
             button.classList.toggle("active", active);
             if (active) {
               button.setAttribute("aria-current", "page");
@@ -1502,29 +583,23 @@
               button.removeAttribute("aria-current");
             }
           });
+          if (currentView !== null && currentView !== view) window.scrollTo({ top: 0, behavior: "instant" });
+          currentView = view;
         }
 
         navButtons.forEach(function (button) {
           button.addEventListener("click", function () {
-            const targetId = button.getAttribute("data-target");
-            const target = document.getElementById(targetId);
-            if (!target) return;
-            target.scrollIntoView({ behavior: "smooth", block: "start" });
-            history.replaceState(null, "", "#" + targetId);
-            setActiveNavigation(targetId);
+            const view = button.getAttribute("data-nav");
+            if (view === currentView) {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            } else {
+              location.hash = view;
+            }
           });
         });
 
-        if ("IntersectionObserver" in window) {
-          const observer = new IntersectionObserver(function (entries) {
-            const visible = entries
-              .filter(function (entry) { return entry.isIntersecting; })
-              .sort(function (a, b) { return b.intersectionRatio - a.intersectionRatio; });
-            if (visible.length) setActiveNavigation(visible[0].target.id);
-          }, { rootMargin: "-15% 0px -55% 0px", threshold: [0, 0.1, 0.35] });
-          [hero, document.getElementById("apps-section"), document.getElementById("youtube-section")]
-            .forEach(function (section) { observer.observe(section); });
-        }
+        window.addEventListener("hashchange", function () { showView(viewFromHash()); });
+        showView(viewFromHash());
 
         const installButton = document.getElementById("install-app");
         window.addEventListener("beforeinstallprompt", function (event) {

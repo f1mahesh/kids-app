@@ -1,7 +1,8 @@
-const CACHE_NAME = "kids-learning-v3";
+const CACHE_NAME = "kids-learning-v5";
 const APP_SHELL = [
   "./",
   "./index.html",
+  "./styles.css",
   "./manifest.webmanifest",
   "./icons/app-icon.svg",
   "./icons/icon-192.png",

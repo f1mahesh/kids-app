@@ -10,7 +10,8 @@ All content lives in JSON files, so you can add or change entries without touchi
 
 ```
 kids-app/
-├── index.html          # Page layout, styles and rendering logic
+├── index.html          # Page layout and rendering logic
+├── styles.css          # All custom styles
 ├── manifest.webmanifest # PWA metadata and install configuration
 ├── sw.js               # Offline app-shell caching
 ├── icons/
@@ -33,7 +34,7 @@ Then open <http://localhost:8000>. Any static server works (e.g. `npx serve`, VS
 
 ## Install as a phone app
 
-Open the site in a supported mobile browser, use the **Install app** button when available, or choose **Add to Home Screen** from the browser menu. Once installed, the directory opens in a standalone app window and its previously loaded content is available offline. On phone screens, the fixed Home, Apps, and Channels navigation keeps both directories one tap away.
+Open the site in a supported mobile browser, use the **Install app** button when available, or choose **Add to Home Screen** from the browser menu. Once installed, the directory opens in a standalone app window and its previously loaded content is available offline. On phone screens, the fixed Home, Apps, and Channels navigation switches between three views on tap, so only one section loads at a time.
 
 Service workers require HTTPS or localhost. GitHub Pages provides HTTPS automatically.
 
@@ -91,7 +92,7 @@ Edit the JSON files and refresh the page. Counts, filter buttons and cards updat
 
 - `id` is referenced by items via `category`.
 - `pillLabel` is the text on the filter button; `label` is the badge text on cards.
-- `badgeClass` is a CSS class defined in `index.html`. Reuse an existing one (`badge-cat-*` for apps, `badge-yt-*` for channels), or add a new class in the `<style>` block.
+- `badgeClass` is a CSS class defined in `styles.css`. Reuse an existing one (`badge-cat-*` for apps, `badge-yt-*` for channels), or add a new class there.
 - Button order follows the order of the `categories` array.
 
 ### Remove an entry
