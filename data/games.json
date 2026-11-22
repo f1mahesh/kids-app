@@ -1,0 +1,13 @@
+{
+  "items": [
+    { "name": "PBS Kids Games", "icon": "📺", "ageLabel": "Ages 2–8", "adFree": true, "priceLabel": "100% Free", "description": "100% free, ad-free educational and character games.", "url": "https://pbskids.org/games" },
+    { "name": "TVOKids", "icon": "🍁", "ageLabel": "Preschool–Grade 5", "adFree": true, "priceLabel": "100% Free", "description": "100% free, ad-free curriculum-linked games.", "url": "https://www.tvokids.com" },
+    { "name": "Kiddo Games", "icon": "🕹️", "ageLabel": "Ages 4–10", "adFree": true, "priceLabel": "100% Free", "description": "100% free, ad-free phonics, math, logic, and arcade games.", "url": "https://kiddogames.fun" },
+    { "name": "Starfall", "icon": "⭐", "ageLabel": "Pre-K–Grade 3", "adFree": true, "priceLabel": "Free Tier + Optional Membership", "description": "Ad-free phonics and early math with a large free tier and an optional paid membership.", "url": "https://www.starfall.com" },
+    { "name": "ABCya", "icon": "🔤", "ageLabel": "Pre-K–Grade 6+", "adFree": false, "priceLabel": "Free with Ads / Subscription", "description": "Over 300 grade-level games; free with ads on desktop, paid subscription for ad-free and mobile browser access.", "url": "https://www.abcya.com" },
+    { "name": "RoomRecess", "icon": "🏫", "ageLabel": "Grades K–6", "adFree": false, "priceLabel": "Free with Ads / Ad-Free Pass", "description": "Teacher-made math, reading, typing, and puzzle games; free with ads (optional ad-free pass).", "url": "https://www.roomrecess.com" },
+    { "name": "Funbrain", "icon": "🧠", "ageLabel": "Pre-K–Grade 8", "adFree": false, "priceLabel": "Free with Ads", "description": "Free ad-supported math, grammar, and logic games, plus digital books.", "url": "https://www.funbrain.com" },
+    { "name": "Poki Kids", "icon": "🎨", "ageLabel": "Ages 5–12", "adFree": false, "priceLabel": "Free with Ads", "description": "Kid-filtered casual, puzzle, drawing, and arcade portal; free with ads.", "url": "https://kids.poki.com" },
+    { "name": "itch.io — Kids HTML5", "icon": "👾", "ageLabel": "All ages (best parent-curated)", "adFree": true, "priceLabel": "Free", "description": "Free indie browser games without banner ads. Best browsed together with a parent.", "url": "https://itch.io/games/html5/tag-kids" }
+  ]
+}

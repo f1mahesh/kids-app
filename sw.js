@@ -1,4 +1,4 @@
-const CACHE_NAME = "kids-learning-v6";
+const CACHE_NAME = "kids-learning-v7";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -9,7 +9,8 @@ const APP_SHELL = [
   "./icons/icon-512.png",
   "./icons/apple-touch-icon.png",
   "./data/apps.json",
-  "./data/youtube.json"
+  "./data/youtube.json",
+  "./data/games.json"
 ];
 
 self.addEventListener("install", function (event) {

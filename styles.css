@@ -183,6 +183,25 @@ button, a {
   transform: translateY(-1px);
 }
 
+.btn-hero-games {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #7c3aed;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.btn-hero-games:hover {
+  background: #6d28d9;
+  transform: translateY(-1px);
+}
+
 /* ==========================================================================
    4. QUICK START GUIDE FOR PARENTS
    ========================================================================== */
@@ -620,6 +639,22 @@ main section {
   background: var(--yt-red-dark);
 }
 
+.btn-visit.games {
+  background: #7c3aed;
+}
+
+.btn-visit.games:hover {
+  background: #6d28d9;
+}
+
+.badge-game-adfree { background: #ccfbf1; color: #0f766e; }
+.badge-game-ads { background: #f1f5f9; color: #475569; }
+
+.section-kicker.games {
+  background: #f5f3ff;
+  color: #6d28d9;
+}
+
 .btn-visit svg {
   width: 15px;
   height: 15px;
@@ -692,7 +727,7 @@ main section {
   right: 0.75rem;
   bottom: calc(0.75rem + env(safe-area-inset-bottom));
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.35rem;
   padding: 0.45rem;
   background: rgba(15, 23, 42, 0.94);
@@ -730,6 +765,10 @@ main section {
 
 .mobile-nav-button[data-nav="channels"].active {
   background: var(--yt-red);
+}
+
+.mobile-nav-button[data-nav="games"].active {
+  background: #7c3aed;
 }
 
 .install-button {

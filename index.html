@@ -43,6 +43,9 @@
         <a href="#channels" class="btn-hero-yt">
           <span>▶️ Explore <span data-yt-count>…</span> YouTube Channels</span>
         </a>
+        <a href="#games" class="btn-hero-games">
+          <span>🎮 Play <span data-game-count>…</span> Free Games</span>
+        </a>
       </div>
     </div>
   </header>
@@ -196,6 +199,23 @@
       </div>
     </section>
 
+    <!-- SECTION 3: FREE ONLINE GAMES -->
+    <section id="games-section" data-view="games" aria-labelledby="games-heading">
+      <div class="section-header">
+        <span class="section-kicker games">🎮 Play &amp; Learn</span>
+        <h2 id="games-heading" class="section-title">Free Online Games for Kids</h2>
+        <p class="section-desc">
+          Browser-based game sites that make practice fun—from fully ad-free picks to ad-supported libraries with hundreds of grade-level games.
+        </p>
+      </div>
+
+      <div class="results-bar">
+        <span id="games-count-text">Loading games…</span>
+      </div>
+
+      <div id="games-grid" class="cards-grid"></div>
+    </section>
+
   </main>
 
   <!-- ========================================================================
@@ -242,6 +262,10 @@
       <span class="nav-icon" aria-hidden="true">▶️</span>
       <span>Channels</span>
     </button>
+    <button class="mobile-nav-button" type="button" data-nav="games">
+      <span class="nav-icon" aria-hidden="true">🎮</span>
+      <span>Games</span>
+    </button>
   </nav>
 
   <!-- ========================================================================
@@ -256,6 +280,7 @@
          ---------------------------------------------------------------------- */
       let APPS_DATA = [];
       let YOUTUBE_DATA = [];
+      let GAMES_DATA = [];
       let APP_CATS = {};
       let YT_CATS = {};
       let deferredInstallPrompt = null;
@@ -466,6 +491,37 @@
           .join("");
       }
 
+      function renderGames() {
+        const grid = document.getElementById("games-grid");
+        document.getElementById("games-count-text").textContent = GAMES_DATA.length + " free game sites";
+        grid.innerHTML = GAMES_DATA
+          .map(function (g) {
+            return (
+              '<article class="card game-card">' +
+                '<div>' +
+                  '<div class="card-top">' +
+                    '<div class="card-icon" aria-hidden="true">' + esc(g.icon) + '</div>' +
+                    '<span class="badge ' + (g.adFree ? 'badge-game-adfree' : 'badge-game-ads') + '">' + (g.adFree ? 'Ad-free' : 'Ad-supported') + '</span>' +
+                  '</div>' +
+                  '<h3 class="card-title">' + esc(g.name) + '</h3>' +
+                  '<div class="meta-tags">' +
+                    '<span class="meta-tag">👶 ' + esc(g.ageLabel) + '</span>' +
+                    '<span class="meta-tag ' + (g.adFree ? 'free' : 'freemium') + '">🏷️ ' + esc(g.priceLabel) + '</span>' +
+                  '</div>' +
+                  '<p class="card-desc">' + esc(g.description) + '</p>' +
+                '</div>' +
+                '<div class="card-footer">' +
+                  '<a href="' + esc(safeUrl(g.url)) + '" target="_blank" rel="noopener noreferrer" class="btn-visit games">' +
+                    '<span>Play Now</span>' +
+                    externalIconSvg +
+                  '</a>' +
+                '</div>' +
+              '</article>'
+            );
+          })
+          .join("");
+      }
+
       /* ----------------------------------------------------------------------
          5. INITIALIZATION & EVENT BINDINGS
          ---------------------------------------------------------------------- */
@@ -482,14 +538,16 @@
         document.querySelectorAll(selector).forEach(function (el) { el.textContent = value; });
       }
 
-      function init(apps, yt) {
+      function init(apps, yt, games) {
         APPS_DATA = apps.items;
         YOUTUBE_DATA = yt.items;
+        GAMES_DATA = games.items;
         APP_CATS = indexCats(apps.categories);
         YT_CATS = indexCats(yt.categories);
 
         setCounts("[data-app-count]", APPS_DATA.length);
         setCounts("[data-yt-count]", YOUTUBE_DATA.length);
+        setCounts("[data-game-count]", GAMES_DATA.length);
         setCounts("[data-app-cat-count]", apps.categories.length);
         buildPills("app-pills", apps.categories, APPS_DATA.length, "All Categories", "app-cat-pill", "data-cat");
         buildPills("yt-pills", yt.categories, YOUTUBE_DATA.length, "All Channels", "yt-pill", "data-yt-sub");
@@ -578,12 +636,13 @@
         bindFilterToggle("yt-filter-panel");
         renderApps();
         renderYouTube();
+        renderGames();
       }
 
       function start() {
         const navButtons = Array.from(document.querySelectorAll(".mobile-nav-button"));
         const mainEl = document.querySelector("main");
-        const VIEWS = ["home", "apps", "channels"];
+        const VIEWS = ["home", "apps", "channels", "games"];
         const LEGACY_HASHES = { "apps-section": "apps", "youtube-section": "channels" };
         let currentView = null;
 
@@ -670,8 +729,8 @@
           });
         }
 
-        Promise.all([loadJson("data/apps.json"), loadJson("data/youtube.json")])
-          .then(function (res) { init(res[0], res[1]); })
+        Promise.all([loadJson("data/apps.json"), loadJson("data/youtube.json"), loadJson("data/games.json")])
+          .then(function (res) { init(res[0], res[1], res[2]); })
           .catch(function (err) {
             console.error("Failed to load data:", err);
             document.getElementById("app-count-text").textContent = "Could not load data. If opened from disk, serve the folder over http (e.g. python -m http.server).";
