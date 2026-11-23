@@ -1,5 +1,6 @@
 {
   "items": [
+    { "name": "KIDS EDU Math", "icon": "🔢", "ageLabel": "Kids", "adFree": true, "priceLabel": "100% Free", "description": "Free, ad-free math education game.", "url": "https://f1mahesh.github.io/KIDS_EDU/" },
     { "name": "PBS Kids Games", "icon": "📺", "ageLabel": "Ages 2–8", "adFree": true, "priceLabel": "100% Free", "description": "100% free, ad-free educational and character games.", "url": "https://pbskids.org/games" },
     { "name": "TVOKids", "icon": "🍁", "ageLabel": "Preschool–Grade 5", "adFree": true, "priceLabel": "100% Free", "description": "100% free, ad-free curriculum-linked games.", "url": "https://www.tvokids.com" },
     { "name": "Kiddo Games", "icon": "🕹️", "ageLabel": "Ages 4–10", "adFree": true, "priceLabel": "100% Free", "description": "100% free, ad-free phonics, math, logic, and arcade games.", "url": "https://kiddogames.fun" },
